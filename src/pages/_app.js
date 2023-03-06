@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 export default function App({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <main className={`${roboto.className} mx-auto`}>
+      <main className={`${roboto.className}`}>
         <Component {...pageProps} />
       </main>
     </QueryClientProvider>
