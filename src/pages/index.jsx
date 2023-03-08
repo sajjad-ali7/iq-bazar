@@ -1,6 +1,7 @@
 import Container from "@/components/Container";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
+import Slides from "@/components/Slides";
 import Head from "next/head";
 
 export default function Home() {
@@ -19,6 +20,10 @@ export default function Home() {
       </Container>
 
       <Hero />
+
+      <Container>
+        <Slides />
+      </Container>
     </>
   );
 }
