@@ -1,1 +1,1 @@
-export const SEARCH_BAR_INDEX = 100;
+export const NAVIGATION_INDEX = 100;
