@@ -4,7 +4,7 @@ const axiosInstanace = Axios.create({
   baseURL: "https://asos2.p.rapidapi.com/",
   timeout: 120000,
   headers: {
-    "X-RapidAPI-Key": "fa1380b7f4msh377c0818280512dp11b6abjsnd0ead541e68f",
+    "X-RapidAPI-Key": "54ac14f2b9mshbcc573e03da6201p139e14jsn3ee7d267addd",
     "X-RapidAPI-Host": "asos2.p.rapidapi.com",
   },
 });
