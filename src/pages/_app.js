@@ -1,9 +1,10 @@
 import "@/styles/globals.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Roboto } from "@next/font/google";
-import "swiper/swiper.min.css";
-import "swiper/components/navigation/navigation.min.css";
 
+import "swiper/css";
+import "swiper/css/navigation";
+import "../styles/globals.css";
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
