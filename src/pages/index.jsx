@@ -15,10 +15,6 @@ export default function Home() {
         </Head>
       </>
 
-      <Container>
-        <Navbar />
-      </Container>
-
       <Hero />
 
       <Container>

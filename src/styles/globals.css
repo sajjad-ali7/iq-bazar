@@ -37,9 +37,9 @@
   width: 70px !important;
   height: 70px !important;
   border-radius: 50%;
-  color: white !important;
-  background-color: #c4170f;
-  transform: scale(0.6);
+  color: black !important;
+  background-color: white;
+  transform: scale(0.5);
 }
 
 @media (max-width: 750px) {

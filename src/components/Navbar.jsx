@@ -13,7 +13,9 @@ const Navbar = () => {
       <nav className="p-6 flex relative max-md:justify-center justify-between items-center">
         <div>
           <h1 className="text-3xl">
-            <span className="font-bold">IQ</span> Bazar
+            <Link href={"/"}>
+              <span className="font-bold">IQ</span> Bazar
+            </Link>
           </h1>
         </div>
 
@@ -41,7 +43,7 @@ const Navbar = () => {
 
       <div
         style={{ zIndex: NAVIGATION_INDEX }}
-        className="md:hidden absolute flex w-full justify-between items-center [&>div]:text-xl [&>div]:cursor-pointer bottom-0 left-0 border-t py-3 px-5"
+        className="md:hidden fixed bg-white flex w-full justify-between items-center [&>div]:text-xl [&>div]:cursor-pointer bottom-0 left-0 border-t py-3 px-5"
       >
         <div>
           <FaBars />

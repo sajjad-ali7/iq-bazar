@@ -24,7 +24,7 @@ export default function Slides() {
   };
 
   return (
-    <div className="my-5">
+    <div className="my-8">
       <Swiper
         navigation={true}
         breakpoints={breakpoints}
