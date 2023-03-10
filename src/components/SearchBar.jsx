@@ -17,9 +17,9 @@ const SearchBar = () => {
   }, [val]);
 
   return (
-    <form className="w-3/4 border-black border rounded fo relative mx-auto">
+    <form className="w-3/4 border-black border rounded relative mx-auto">
       <input
-        className="input focus:outline-0 rounded-lg  text-black w-full"
+        className="input focus:outline-0 rounded-lg text-black w-full"
         placeholder="Search Here ..."
         onChange={(e) => setVal(e.target.value)}
         value={val}
