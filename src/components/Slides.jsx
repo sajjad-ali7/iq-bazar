@@ -28,44 +28,35 @@ export default function Slides() {
       <Swiper
         navigation={true}
         breakpoints={breakpoints}
-        className="mySwiper text-white h-80"
+        className="mySwiper h-64 "
       >
         <SwiperSlide>
-          <div
-            className="h-full w-full bg-black bg-cover bg-center"
-            style={{ backgroundImage: `url(/delivry.avif)` }}
-          >
-            <h1 className="text-2xl">Express Delivery</h1>
-          </div>
+          <Div imgPath={"free.webp"} />
         </SwiperSlide>
-        <SwiperSlide className="bg-white">
-          {" "}
-          <div
-            className="h-full w-full bg-black bg-cover bg-center"
-            style={{ backgroundImage: `url(/delivry.avif)` }}
-          >
-            <h1 className="text-2xl">Express Delivery</h1>
-          </div>
+        <SwiperSlide>
+          <Div imgPath={"cash.webp"} />
         </SwiperSlide>
-        <SwiperSlide className="bg-white">
-          {" "}
-          <div
-            className="h-full w-full bg-black bg-cover bg-center"
-            style={{ backgroundImage: `url(/delivry.avif)` }}
-          >
-            <h1 className="text-2xl">Express Delivery</h1>
-          </div>
+        <SwiperSlide>
+          <Div imgPath={"express.webp"} />
         </SwiperSlide>
-        <SwiperSlide className="bg-white">
-          {" "}
-          <div
-            className="h-full w-full bg-black bg-cover bg-center"
-            style={{ backgroundImage: `url(/delivry.avif)` }}
-          >
-            <h1 className="text-2xl">Express Delivery</h1>
-          </div>
+        <SwiperSlide>
+          <Div imgPath={"voucher.webp"} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Div imgPath={"coupon.webp"} />
         </SwiperSlide>
       </Swiper>
     </div>
   );
 }
+
+const Div = ({ imgPath }) => {
+  return (
+    <div
+      className="h-full rounded-xl w-full bg-black bg-cover text-white"
+      style={{
+        backgroundImage: `url(/${imgPath})`,
+      }}
+    ></div>
+  );
+};

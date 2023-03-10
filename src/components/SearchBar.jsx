@@ -19,7 +19,7 @@ const SearchBar = () => {
   return (
     <form className="w-3/4 relative mx-auto">
       <input
-        className="input  rounded-lg border-white w-full"
+        className="input  rounded-lg text-black w-full"
         placeholder="Search Here ..."
         onChange={(e) => setVal(e.target.value)}
         value={val}
@@ -37,12 +37,12 @@ const Prediction = ({ data }) => {
     return (
       <div
         style={{ zIndex: NAVIGATION_INDEX }}
-        className="bg-black absolute top-full left-0  w-full transition duration-1000 pt-3 rounded-lg"
+        className="text-black bg-gray-100 absolute top-full left-0  w-full transition duration-1000 pt-1 rounded-md"
       >
         {data?.slice(0, 4).map((e) => (
           <div
             key={e.numberOfResults}
-            className="bg-black text-left hover:bg-gray-300 hover:text-black transition duration-200 cursor-pointer px-3 py-2 border-b"
+            className=" text-left capitalize transition duration-200 cursor-pointer px-3 py-2 hover:bg-gray-200 rounded-md"
           >
             {e.searchTerm}
           </div>
