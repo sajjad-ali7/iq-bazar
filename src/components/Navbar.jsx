@@ -27,7 +27,7 @@ const Navbar = () => {
             <Link href={"/FAQ"}>FAQ</Link>
           </li>
           <li>
-            <Link href={"/Contact"}>Contact</Link>
+            <Link href={"/Contact"}>{t("CONTACT")}</Link>
           </li>
         </ul>
 

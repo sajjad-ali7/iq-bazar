@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 
 const faqObj = [
@@ -29,18 +30,23 @@ const faqObj = [
 
 const FAQ = () => {
   return (
-    <div
-      className="py-20 text-center bg-stone-100"
-      style={{ minHeight: "calc(100vh - 86px)" }}
-    >
-      <h1 className="text-3xl">FAQ</h1>
+    <>
+      <Head>
+        <title>FAQ</title>
+      </Head>
+      <div
+        className="py-20 text-center bg-stone-100"
+        style={{ minHeight: "calc(100vh - 86px)" }}
+      >
+        <h1 className="text-3xl">FAQ</h1>
 
-      <div className="w-11/12 md:w-3/4 mt-7 mx-auto">
-        {faqObj.map((e) => (
-          <Collapse {...e} />
-        ))}
+        <div className="w-11/12 md:w-3/4 mt-7 mx-auto">
+          {faqObj.map((e) => (
+            <Collapse {...e} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
