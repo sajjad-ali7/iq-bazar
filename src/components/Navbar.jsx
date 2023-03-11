@@ -27,7 +27,7 @@ const Navbar = () => {
             <Link href={"/FAQ"}>FAQ</Link>
           </li>
           <li>
-            <Link href={"/Contact"}>{t("CONTACT")}</Link>
+            <Link href={"/Contact"}>Contact</Link>
           </li>
         </ul>
 
@@ -52,7 +52,9 @@ const Navbar = () => {
           <BsSearch />
         </div>
         <div>
-          <BiHomeSmile />
+          <Link href={"/"}>
+            <BiHomeSmile />
+          </Link>
         </div>
         <div>
           <SlBag />

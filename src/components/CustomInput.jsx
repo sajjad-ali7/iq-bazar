@@ -1,19 +1,38 @@
 import { useField } from "formik";
 
-const CustomInput = ({ label, ...props }) => {
+const CustomInput = ({ label, type = "input", ...props }) => {
   const [field, meta] = useField(props);
-  console.log(field);
-  console.log(meta);
   return (
-    <label>
-      {label}
-      <input
-        {...field}
-        className={`${
-          meta.touched && meta.error ? "border border-red-600" : ""
-        } transition-all duration-700`}
-      />
-    </label>
+    <div className="mb-4 flex-grow ">
+      <p className="mb-1">{label}</p>
+      {type === "input" ? (
+        <input
+          {...field}
+          className={`${
+            meta.touched && meta.error
+              ? "border border-red-600"
+              : "border border-black"
+          } outline-none p-1 transition-all duration-1000 rounded-md w-full`}
+        />
+      ) : (
+        <textarea
+          {...field}
+          style={{ height: "150px" }}
+          className={`${
+            meta.touched && meta.error
+              ? "border border-red-600"
+              : "border border-black"
+          } outline-none p-1 transition-all duration-1000 rounded-md w-full`}
+        />
+      )}
+      <p
+        className={`font-bold text-red-600 mt-1 transition-all duration-700 pointer-events-none ${
+          meta.error ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {meta.touched && meta.error && meta.error}
+      </p>
+    </div>
   );
 };
 

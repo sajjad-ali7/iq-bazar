@@ -1,16 +1,39 @@
 import CustomInput from "@/components/CustomInput";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import * as yup from "yup";
 const index = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+
+  useEffect(() => {
+    if (isSubmitting) {
+      const timer = setTimeout(() => {
+        setIsSubmitting(false);
+        setShowAlert(true);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+
+    if (showAlert) {
+      const timer = setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isSubmitting, showAlert]);
   return (
     <>
       <Head>
         <title>Contact</title>
       </Head>
-      <div className="bg-stone-100 ">
-        <div className="w-11/12 md:w-3/4  py-16 mx-auto flex max-md:flex-col-reverse gap-8 justify-center">
-          <div className="bg-white p-3 ">
+      <div className="bg-stone-100 overflow-hidden relative ">
+        <Alert showAlert={showAlert} />
+        <div className="w-11/12 lg:w-3/4  py-16 mx-auto flex max-md:flex-col-reverse gap-8 justify-center">
+          <div className="bg-white max-md:w-full p-3 rounded-md self-start">
             <img
               src="/contact-us.svg"
               alt="contact-us"
@@ -31,7 +54,7 @@ const index = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white md:w-8/12">
+          <div className="bg-white md:w-8/12 rounded-md p-3">
             <div className=" p-3">
               <h1 className="text-2xl">Questions, Comments, Or Concerns?</h1>
               <Formik
@@ -42,31 +65,40 @@ const index = () => {
                   description: "",
                 }}
                 validationSchema={yup.object({
-                  username: yup.string("").min(3).required(),
-                  email: yup.string().required(),
+                  username: yup
+                    .string("Name Must Be String")
+                    .required("Name is Required"),
+                  email: yup
+                    .string()
+                    .email("Invalid Email")
+                    .required("Email is Required"),
                   subject: yup.string().min(3).required(),
                   description: yup.string().min(3).required(),
                 })}
+                onSubmit={() => {
+                  setIsSubmitting(true);
+                }}
               >
-                {({ isSubmitting }) => (
+                {() => (
                   <Form>
-                    <div className="flex max-sm:flex-col gap-5 [&>input]:flex-grow">
-                      <CustomInput label={"username"} name="username" />
-                      <Field
-                        className="border-black border "
-                        type="text"
-                        name="username"
-                      />
-                      <ErrorMessage name="username" component="div" />
-                      <Field
-                        className="border-black border"
-                        type="email"
-                        name="email"
-                      />
-                      <ErrorMessage name="email" component="div" />
+                    <div className="flex max-sm:flex-col gap-x-5 mt-5">
+                      <CustomInput label={"Name"} name="username" />
+                      <CustomInput label={"Email"} name="email" />
                     </div>
-                    <button type="submit" disabled={isSubmitting}>
-                      Submit
+                    <CustomInput label={"Subject"} name="subject" />
+                    <CustomInput
+                      label={"Description"}
+                      name="description"
+                      type="textarea"
+                    />
+                    <button
+                      type="submit"
+                      className="btn btn-info submit text-white mt-2"
+                      disabled={isSubmitting}
+                    >
+                      <span className="flex items-center justify-center">
+                        Submit {isSubmitting && <Spinner />}
+                      </span>
                     </button>
                   </Form>
                 )}
@@ -80,3 +112,43 @@ const index = () => {
 };
 
 export default index;
+
+const Spinner = () => {
+  return (
+    <div class="lds-ring ">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  );
+};
+
+const Alert = ({ showAlert }) => {
+  return (
+    <div
+      className={`alert top-9 transition-all duration-700 fixed alert-success text-white md:w-96 shadow-lg ${
+        showAlert ? "right-0" : "-right-full"
+      }`}
+    >
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="stroke-current flex-shrink-0 h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span className="px-2">
+          Thank You For Contacting Us . We Will Get Back To You Soon{" "}
+        </span>
+      </div>
+    </div>
+  );
+};
