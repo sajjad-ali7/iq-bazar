@@ -52,9 +52,7 @@ const Navbar = () => {
           <BsSearch />
         </div>
         <div>
-          <Link href={"/"}>
-            <BiHomeSmile />
-          </Link>
+          <BiHomeSmile />
         </div>
         <div>
           <SlBag />
