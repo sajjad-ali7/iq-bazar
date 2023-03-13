@@ -1,16 +1,11 @@
-import CartButton from "@/components/CartButton";
 import CartDrawer from "@/components/CartDrawer";
 import Container from "@/components/Container";
 import Hero from "@/components/Hero";
+import MenuDrawer from "@/components/MenuDrawer";
 import Slides from "@/components/Slides";
 import Head from "next/head";
-import { useState } from "react";
 
 export default function Home() {
-  const [showCart, setShowCart] = useState(false);
-
-  const toggleShowCart = (value) => setShowCart(value);
-
   return (
     <>
       <>
@@ -26,7 +21,8 @@ export default function Home() {
       <Container>
         <Slides />
       </Container>
-      <CartDrawer showCart={showCart} setShowCart={toggleShowCart} />
+      <CartDrawer />
+      <MenuDrawer />
     </>
   );
 }

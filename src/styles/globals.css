@@ -46,6 +46,13 @@
   color: black !important;
   background-color: white;
   transform: scale(0.5);
+  transition: 0.5s;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: black !important;
+  color: white !important;
 }
 
 @media (max-width: 750px) {
