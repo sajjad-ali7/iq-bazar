@@ -8,7 +8,7 @@ const MenuDrawer = () => {
 
   useEffect(() => {
     return () => setShowMenuDrawer(false);
-  });
+  }, []);
   return (
     <>
       <div

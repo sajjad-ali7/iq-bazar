@@ -10,7 +10,9 @@ const CartDrawer = () => {
   const { showCart, setShowCart } = useContext(App_Context);
   useEffect(() => {
     return () => setShowCart(false);
-  });
+  }, []);
+
+  console.log(showCart);
   return (
     <>
       <div
