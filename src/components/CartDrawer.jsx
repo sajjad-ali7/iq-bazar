@@ -23,7 +23,7 @@ const CartDrawer = () => {
         style={{ zIndex: CART_DRAWER_INDEX }}
       ></div>
       <div
-        className={`bg-white transition-all duration-500 min-h-screen fixed top-0 ${
+        className={`bg-drawerBg transition-all duration-500 min-h-screen fixed top-0 ${
           showCart ? "right-0" : "-right-full"
         } `}
         style={{ zIndex: CART_DRAWER_INDEX }}

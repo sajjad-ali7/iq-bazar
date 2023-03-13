@@ -1,7 +1,8 @@
 import "@/styles/globals.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Roboto } from "@next/font/google";
-
+import CartDrawer from "@/components/CartDrawer";
+import MenuDrawer from "@/components/MenuDrawer";
 import "swiper/css";
 import "swiper/css/navigation";
 import "../styles/globals.css";
@@ -29,6 +30,8 @@ export default function App({ Component, pageProps }) {
           <Container>
             <Navbar />
           </Container>
+          <CartDrawer />
+          <MenuDrawer />
           <Component {...pageProps} />
         </main>
       </App_Context.Provider>

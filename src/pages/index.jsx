@@ -21,8 +21,6 @@ export default function Home() {
       <Container>
         <Slides />
       </Container>
-      <CartDrawer />
-      <MenuDrawer />
     </>
   );
 }
