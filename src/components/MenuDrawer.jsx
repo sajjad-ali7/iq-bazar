@@ -5,7 +5,6 @@ import { useContext, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 const MenuDrawer = () => {
   const { setShowMenuDrawer, showMenuDrawer } = useContext(App_Context);
-  console.log(showMenuDrawer);
   useEffect(() => {
     return () => setShowMenuDrawer(false);
   }, []);
@@ -44,6 +43,7 @@ const MenuDrawer = () => {
           <ul className="pt-10 p-4 w-80 flex-col flex gap-5 [&>li]:text-xl">
             <li>
               <Link
+                onClick={() => setShowMenuDrawer(false)}
                 href={"/"}
                 className="hover:pl-2 duration-200 transition-all"
               >
@@ -52,6 +52,7 @@ const MenuDrawer = () => {
             </li>
             <li>
               <Link
+                onClick={() => setShowMenuDrawer(false)}
                 href={"/Offers"}
                 className="hover:pl-2 duration-200 transition-all"
               >
@@ -60,6 +61,7 @@ const MenuDrawer = () => {
             </li>
             <li>
               <Link
+                onClick={() => setShowMenuDrawer(false)}
                 href={"/FAQ"}
                 className="hover:pl-2 duration-200 transition-all"
               >
@@ -68,6 +70,7 @@ const MenuDrawer = () => {
             </li>
             <li>
               <Link
+                onClick={() => setShowMenuDrawer(false)}
                 href={"/Contact"}
                 className="hover:pl-2 duration-200 transition-all"
               >

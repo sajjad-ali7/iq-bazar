@@ -1,11 +1,16 @@
-import CartDrawer from "@/components/CartDrawer";
 import Container from "@/components/Container";
 import Hero from "@/components/Hero";
-import MenuDrawer from "@/components/MenuDrawer";
 import Slides from "@/components/Slides";
+import { getProducts } from "@/service";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [products, setProducts] = useState();
+  useEffect(() => {
+    getProducts().then((data) => setProducts(data.data));
+  }, []);
+
   return (
     <>
       <>

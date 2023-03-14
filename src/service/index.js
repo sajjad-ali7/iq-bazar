@@ -1,16 +1,12 @@
 import { default as axiosInstanace } from "./Axios";
 
-export const getAutoComplete = async (searchKey) => {
-  if (searchKey.trim() === "") return;
+export const getProducts = async () => {
   try {
-    let res = await axiosInstanace.get(`v2/auto-complete?q=${searchKey}`);
+    const res = await axiosInstanace.get(
+      "products?searchJoin=and&with=type;author&limit=20&language=en&search=type.slug:grocery;status:publish"
+    );
     return res;
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
   }
-};
-
-export const getList = async () => {
-  let res = await axiosInstanace.get(`categories/list`);
-  return res;
 };

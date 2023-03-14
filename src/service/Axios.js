@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const axiosInstanace = Axios.create({
-  baseURL: "https://asos2.p.rapidapi.com/",
+  baseURL: "https://mock.redq.io/api/",
   timeout: 120000,
 });
 
