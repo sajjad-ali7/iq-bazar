@@ -1,6 +1,6 @@
 import { NAVIGATION_INDEX } from "@/consts";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import { SlBag } from "react-icons/sl";
 import { FaBars } from "react-icons/fa";
@@ -10,6 +10,25 @@ import { App_Context } from "@/pages/_app";
 const Navbar = () => {
   const [isSearchbarOpen, setIsSearchbarOpen] = useState(false);
   const { setShowCart, setShowMenuDrawer } = useContext(App_Context);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 84) {
+        console.log(window.screenY);
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
   return (
     <>
       <nav className="p-6 flex relative max-md:justify-center justify-between items-center">
@@ -22,13 +41,13 @@ const Navbar = () => {
         </div>
 
         <ul className="flex gap-7 max-md:hidden text-lg">
-          <li>
+          <li className="font-semibold">
             <Link href={"/Offers"}>Offers</Link>
           </li>
-          <li>
+          <li className="font-semibold">
             <Link href={"/FAQ"}>FAQ</Link>
           </li>
-          <li>
+          <li className="font-semibold">
             <Link href={"/Contact"}>Contact</Link>
           </li>
         </ul>

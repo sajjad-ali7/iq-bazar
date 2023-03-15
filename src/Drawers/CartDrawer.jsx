@@ -8,6 +8,7 @@ import { App_Context } from "@/pages/_app";
 
 const CartDrawer = () => {
   const { showCart, setShowCart } = useContext(App_Context);
+
   useEffect(() => {
     return () => setShowCart(false);
   }, []);
@@ -17,7 +18,7 @@ const CartDrawer = () => {
       <div
         className={`w-full fixed transition-all duration-500 ${
           showCart ? "left-0" : "-left-full"
-        } top-0 h-full bg-black opacity-40`}
+        } top-0 min-h-screen bg-black opacity-40`}
         onClick={() => setShowCart(false)}
         style={{ zIndex: CART_DRAWER_INDEX }}
       ></div>
@@ -30,7 +31,11 @@ const CartDrawer = () => {
         <div className="drawer-content">
           <CartButton showCart={showCart} setShowCart={setShowCart} />
           <div className="pt-5 p-2 w-80 ">
-            <div className="border-b pb-5 mb-5">
+            <div className="flex items-center justify-between border-b pb-5 mb-1">
+              <p className="flex items-center justify-between gap-1 text-fontColor text-lg">
+                <FiShoppingBag />
+                <span>0 Item</span>
+              </p>
               <button
                 className="block ml-auto mr-4 scale-150"
                 onClick={() => setShowCart(false)}
@@ -38,14 +43,14 @@ const CartDrawer = () => {
                 <AiOutlineClose />
               </button>
             </div>
-            <div className="  max-w-full">
+            <div className=" relative max-w-full">
               {/* <Lottie
                 options={{
                   animationData: showCart && emptyBag,
                 }}
               /> */}
-              <div className=" overflow-y-auto">
-                <div>
+              <div>
+                <div className="h-[75vh] overflow-auto">
                   <CartItem />
                   <CartItem />
                   <CartItem />
@@ -57,10 +62,18 @@ const CartDrawer = () => {
                   <CartItem />
                   <CartItem />
                   <CartItem />
+                  {/* <h1 className=" mt-28 text-center text-2xl">
+                    No Product Found
+                  </h1> */}
                 </div>
               </div>
+              <div className="overflow-hidden mt-2 text-center rounded-3xl w-full flex items-center justify-between">
+                <p className="px-3">checkout</p>
+                <p className="py-3 px-5 rounded-3xl text-bgColor bg-fontColor">
+                  $100
+                </p>
+              </div>
             </div>
-            {/* <h1 className=" mt-28 text-center text-2xl">No Product Found</h1> */}
           </div>
         </div>
       </div>
@@ -75,10 +88,10 @@ const CartButton = ({ showCart, setShowCart }) => {
     <div
       className={`fixed transition-all duration-500 top-2/4 max-md:hidden ${
         !showCart ? "right-0" : "-right-full"
-      } p-3 -translate-y-2/4 rounded-l-md bg-cyan-500 cursor-pointer `}
+      } p-3 -translate-y-2/4 rounded-l-md bg-fontColor cursor-pointer `}
       onClick={() => setShowCart(true)}
     >
-      <p className="flex items-center justify-between gap-1 text-white">
+      <p className="flex items-center justify-between gap-1 text-bgColor">
         <FiShoppingBag />
         <span>0 Item</span>
       </p>

@@ -21,11 +21,11 @@ export default function Slides() {
   };
 
   return (
-    <div className="my-8">
+    <div className="my-3 ">
       <Swiper
         navigation={true}
         breakpoints={breakpoints}
-        className="mySwiper h-64 "
+        className="mySwiper h-52 "
       >
         <SwiperSlide>
           <Div imgPath={"free.webp"} />

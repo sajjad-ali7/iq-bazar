@@ -1,5 +1,6 @@
 import Container from "@/components/Container";
 import Hero from "@/components/Hero";
+import MainContent from "@/components/MainContent";
 import Slides from "@/components/Slides";
 import { getProducts } from "@/service";
 import Head from "next/head";
@@ -23,8 +24,14 @@ export default function Home() {
 
       <Hero />
 
+      <div className="bg-white p-5">
+        <Container>
+          <Slides />
+        </Container>
+      </div>
+
       <Container>
-        <Slides />
+        <MainContent />
       </Container>
     </>
   );

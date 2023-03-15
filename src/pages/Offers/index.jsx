@@ -10,7 +10,7 @@ const index = () => {
         <meta name="description" content="hello" />
       </Head>
       <Container>
-        <div className="grid-auto-cols mx-auto ">
+        <div className="offers-auto-cols mx-auto ">
           <Card imgNum={2} coupon={"5OFF2"} />
           <Card imgNum={5} coupon={"OFF6"} />
           <Card imgNum={6} coupon={"BAZAR10"} />
