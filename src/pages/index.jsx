@@ -9,7 +9,9 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [products, setProducts] = useState();
   useEffect(() => {
-    getProducts().then((data) => setProducts(data.data));
+    getProducts().then((res) => {
+      setProducts(res.data.data);
+    });
   }, []);
 
   return (
@@ -31,7 +33,7 @@ export default function Home() {
       </div>
 
       <Container>
-        <MainContent />
+        <MainContent products={products} />
       </Container>
     </>
   );

@@ -17,7 +17,8 @@
 .products-auto-cols {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+  row-gap: 20px;
+  column-gap: 30px;
 }
 
 @media (max-width: 885px) {
@@ -119,12 +120,12 @@
 }
 
 .product-btn:hover p:first-child {
-  background-color: #0a2647;
+  background-color: #06376f;
   color: #e8e8ea;
 }
 
 .product-btn:hover p:last-child {
-  background-color: #033165;
+  background-color: #03244a;
   color: #e8e8ea;
 }
 

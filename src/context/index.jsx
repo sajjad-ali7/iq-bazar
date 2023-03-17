@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const contextApi = () => {
-  const [showCart, setShowCart] = useState(true);
+  const [showCart, setShowCart] = useState(false);
   const [showMenuDrawer, setShowMenuDrawer] = useState(false);
 
   return {

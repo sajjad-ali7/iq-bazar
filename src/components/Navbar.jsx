@@ -55,7 +55,7 @@ const Navbar = () => {
         {/* On Small Devices */}
         <div
           className={`md:hidden absolute transition-all duration-1000 w-full ${
-            isSearchbarOpen ? "mt-0" : "-mt-36"
+            isSearchbarOpen ? "mt-0" : "-mt-40"
           }`}
         >
           <SearchBar />
