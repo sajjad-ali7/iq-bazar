@@ -1,9 +1,9 @@
 import { default as axiosInstanace } from "./Axios";
 
-export const getProducts = async () => {
+export const getProducts = async (currentPage) => {
   try {
     const res = await axiosInstanace.get(
-      "products?searchJoin=and&with=type;author&limit=20&language=en&search=type.slug:makeup;status:publish"
+      `products?searchJoin=and&with=type;author&limit=20&page=${currentPage}&language=en&search=type.slug:makeup;status:publish`
     );
     return res;
   } catch (err) {

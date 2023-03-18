@@ -14,7 +14,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 84) {
-        console.log(window.screenY);
+        // console.log(window.screenY);
       }
     };
 

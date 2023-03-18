@@ -7,12 +7,21 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loader, setLoader] = useState(false);
+  const onLoadMoreClick = () => {
+    setCurrentPage((prev) => prev + 1);
+    setLoader(false);
+  };
+
   useEffect(() => {
-    getProducts().then((res) => {
-      setProducts(res.data.data);
+    setLoader(true);
+    getProducts(currentPage).then((res) => {
+      setProducts((prev) => [...prev, ...res.data.data]);
+      setLoader(false);
     });
-  }, []);
+  }, [currentPage]);
 
   return (
     <>
@@ -33,7 +42,12 @@ export default function Home() {
       </div>
 
       <Container>
-        <MainContent products={products} />
+        <MainContent
+          currentPage={currentPage}
+          loader={loader}
+          products={products}
+          onLoadMoreClick={onLoadMoreClick}
+        />
       </Container>
     </>
   );

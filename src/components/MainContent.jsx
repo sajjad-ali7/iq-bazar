@@ -1,29 +1,52 @@
-import { useState } from "react";
+import { useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import Skeleton from "./Skeleton";
 
-const MainContent = ({ products }) => {
+const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+  useEffect(() => {
+    if (isInView) {
+      onLoadMoreClick();
+    }
+  }, [isInView]);
   return (
     <div className="flex gap-2 max-xl:flex-col p-4">
       <div className="w-1/4 p-2">
         <Categories />
       </div>
-      <div className="flex-grow products-auto-cols">
-        {products ? (
-          products?.map((product) => <Product {...product} />)
-        ) : (
-          <>
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-          </>
+      <div className="flex-grow">
+        <div className=" products-auto-cols">
+          {products.length > 0 ? (
+            products?.map((product) => <Product {...product} />)
+          ) : (
+            <>
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+            </>
+          )}
+        </div>
+
+        {currentPage !== 3 && (
+          <button
+            ref={ref}
+            className={`btn mx-auto block mt-8 transition-all duration-500 ${
+              isInView && loader
+                ? "bg-fontColor hover:bg-bgColor hover:text-fontColor"
+                : ""
+            }`}
+          >
+            {isInView ? "loading ..." : null}
+          </button>
         )}
       </div>
     </div>
@@ -33,12 +56,8 @@ const MainContent = ({ products }) => {
 export default MainContent;
 
 const Product = (props) => {
-  const {
-    name,
-    price,
-    id,
-    image: { original },
-  } = props;
+  if (!props) return;
+  const { name, price, id, image: { original } = "" } = props;
   return (
     <div
       key={id}
@@ -52,10 +71,10 @@ const Product = (props) => {
         />
       </div>
       <div className="flex flex-col gap-1 mt-2 px-3 pb-3">
-        <h1 className="text-xl">${price}</h1>
         <p title={name} className="text-md font-semibold text-ellipsis	truncate">
           {name}
         </p>
+        <h1 className="text-xl">${price}</h1>
         <button className="product-btn mt-2">
           <p className="flex-grow py-[4px]">Add</p>
           <p className=" rounded-md w-1/4 py-[4px] bg-stone-300 ">+</p>
