@@ -113,7 +113,7 @@ const index = () => {
 
 export default index;
 
-const Spinner = () => {
+export const Spinner = () => {
   return (
     <div class="lds-ring ">
       <div></div>

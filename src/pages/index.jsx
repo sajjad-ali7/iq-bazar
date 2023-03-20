@@ -10,10 +10,6 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loader, setLoader] = useState(false);
-  const onLoadMoreClick = () => {
-    setCurrentPage((prev) => prev + 1);
-    setLoader(false);
-  };
 
   useEffect(() => {
     setLoader(true);
@@ -22,6 +18,11 @@ export default function Home() {
       setLoader(false);
     });
   }, [currentPage]);
+
+  const onLoadMoreClick = () => {
+    setCurrentPage((prev) => prev + 1);
+    setLoader(false);
+  };
 
   return (
     <>
@@ -44,6 +45,7 @@ export default function Home() {
       <Container>
         <MainContent
           currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
           loader={loader}
           products={products}
           onLoadMoreClick={onLoadMoreClick}

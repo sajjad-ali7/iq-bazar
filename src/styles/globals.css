@@ -133,3 +133,8 @@
   background-color: #0a2647;
   color: #e8e8ea;
 }
+
+li {
+  padding-left: 15px;
+  cursor: pointer;
+}
