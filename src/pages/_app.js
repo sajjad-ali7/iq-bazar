@@ -10,8 +10,8 @@ const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
-import MenuDrawer from "@/Drawers/MenuDrawer";
-import CartDrawer from "@/Drawers/CartDrawer";
+import MenuDrawer from "@/Asides/MenuAside";
+import CartDrawer from "@/Asides/CartAside";
 import contextApi from "@/context";
 
 import { createContext, useState } from "react";
