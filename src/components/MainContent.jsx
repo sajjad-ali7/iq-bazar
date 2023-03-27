@@ -6,6 +6,7 @@ import { RiEyeCloseFill } from "react-icons/ri";
 import { GiLipstick } from "react-icons/gi";
 import { FaGem } from "react-icons/fa";
 import Skeleton from "./Skeleton";
+import Product from "./Product";
 
 const MainContent = ({
   currentPage,
@@ -56,38 +57,6 @@ const MainContent = ({
 };
 
 export default MainContent;
-
-const Product = (props) => {
-  if (!props) return;
-  const { name, price, id, image: { original } = "" } = props;
-  return (
-    <div
-      key={id}
-      className=" cursor-pointer overflow-hidden rounded-md transition-all duration-500 hover:-translate-y-2 bg-white"
-    >
-      <div className="overflow-hidden ">
-        <img
-          src={original}
-          alt="product"
-          className="w-full object-cover max-h-[305px] min-h-[304px]"
-        />
-      </div>
-      <div className="flex flex-col gap-1 mt-2 px-3 pb-3">
-        <p
-          title={name}
-          className="text-md font-semibold text-ellipsis truncate"
-        >
-          {name}
-        </p>
-        <h1 className="text-xl">${price}</h1>
-        <button className="product-btn mt-2">
-          <p className="flex-grow py-[4px]">Add</p>
-          <p className=" rounded-md w-1/4 py-[4px] bg-stone-300 ">+</p>
-        </button>
-      </div>
-    </div>
-  );
-};
 
 const Categories = () => {
   const [openList, setOpenList] = useState("");

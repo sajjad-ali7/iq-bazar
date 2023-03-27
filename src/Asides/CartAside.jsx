@@ -51,17 +51,6 @@ const CartDrawer = () => {
               /> */}
               <div>
                 <div className="h-[75vh] overflow-auto">
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
                   {/* <h1 className=" mt-28 text-center text-2xl">
                     No Product Found
                   </h1> */}
@@ -102,8 +91,8 @@ const CartButton = ({ showCart, setShowCart }) => {
 };
 
 const CartItem = () => {
-  const [counter, setCounter] = useState(1);
-  if (counter === 0) return null;
+  const [amount, setAmount] = useState(1);
+  if (amount === 0) return null;
   return (
     <>
       <div
@@ -112,14 +101,14 @@ const CartItem = () => {
         <div className="flex  flex-col bg-gray-200 p-1 rounded-md items-center justify-center">
           <button
             className="text-2xl"
-            onClick={() => setCounter((prev) => ++prev)}
+            onClick={() => setAmount((prev) => ++prev)}
           >
             +
           </button>
-          <span className="text-xl -mb-1">{counter}</span>
+          <span className="text-xl -mb-1">{amount}</span>
           <button
             className="text-2xl"
-            onClick={() => setCounter((prev) => --prev)}
+            onClick={() => setAmount((prev) => --prev)}
           >
             -
           </button>
@@ -137,9 +126,9 @@ const CartItem = () => {
           <div className="flex-grow h-16 flex flex-col justify-between">
             <p>product name</p>
             <div className="flex justify-between items-center ">
-              <p>${22 * counter}</p>
+              <p>${22 * amount}</p>
               <button
-                onClick={() => setCounter(0)}
+                onClick={() => setAmount(0)}
                 className="block ml-auto mr-3 scale-150"
               >
                 <AiOutlineClose />

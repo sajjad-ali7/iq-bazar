@@ -112,19 +112,26 @@
 }
 
 .product-btn {
-  @apply flex items-center transition-all text-center w-full rounded-md bg-stone-200 hover:bg-fontColor overflow-hidden [&>p]:hover:text-fontColor;
+  @apply flex items-center transition-all h-8 text-center w-full rounded-md bg-stone-200 hover:bg-fontColor overflow-hidden [&>p]:hover:text-fontColor;
 }
 
 .product-btn p {
   transition: 0.5s;
 }
 
-.product-btn:hover p:first-child {
+.product-btn:hover .btn-text {
   background-color: #06376f;
   color: #e8e8ea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.product-btn:hover p:last-child {
+.product-btn:hover .btn-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #03244a;
   color: #e8e8ea;
 }
