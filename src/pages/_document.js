@@ -1,13 +1,16 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { RecoilRoot } from "recoil";
 
 export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <body className="overflow-x-hidden bg-bgColor text-fontColor">
-        <Main />
-        <NextScript />
-      </body>
+      <RecoilRoot>
+        <body className="overflow-x-hidden bg-bgColor text-fontColor">
+          <Main />
+          <NextScript />
+        </body>
+      </RecoilRoot>
     </Html>
   );
 }

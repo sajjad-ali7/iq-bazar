@@ -1,12 +1,15 @@
 import { CART_DRAWER_INDEX } from "@/consts";
-import { App_Context } from "@/pages/_app";
+import { showMenuDrawerState } from "@/recoil";
 import Link from "next/link";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useRecoilState } from "recoil";
 const MenuDrawer = () => {
-  const { setShowMenuDrawer, showMenuDrawer } = useContext(App_Context);
+  const [showMenuDrawer, setShowMenuDrawer] =
+    useRecoilState(showMenuDrawerState);
   useEffect(() => {
     return () => setShowMenuDrawer(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

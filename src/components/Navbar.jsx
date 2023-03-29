@@ -1,15 +1,17 @@
 import { NAVIGATION_INDEX } from "@/consts";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import { SlBag } from "react-icons/sl";
 import { FaBars } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import { BiHomeSmile } from "react-icons/bi";
-import { App_Context } from "@/pages/_app";
+import { useSetRecoilState } from "recoil";
+import { showCartState, showMenuDrawerState } from "@/recoil";
 const Navbar = () => {
   const [isSearchbarOpen, setIsSearchbarOpen] = useState(false);
-  const { setShowCart, setShowMenuDrawer } = useContext(App_Context);
+  const setShowCart = useSetRecoilState(showCartState);
+  const setShowMenuDrawer = useSetRecoilState(showMenuDrawerState);
 
   useEffect(() => {
     const handleScroll = () => {

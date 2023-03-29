@@ -4,11 +4,11 @@ import emptyBag from "../../public/emptyBag.json";
 import Lottie from "lottie-react-web";
 import { FiShoppingBag } from "react-icons/fi";
 import { CART_DRAWER_INDEX } from "@/consts";
-import { useContext, useEffect, useState } from "react";
-import { App_Context } from "@/pages/_app";
-
+import { useEffect, useState } from "react";
+import { showCartState } from "@/recoil";
+import { useRecoilState } from "recoil";
 const CartDrawer = () => {
-  const { showCart, setShowCart } = useContext(App_Context);
+  const [showCart, setShowCart] = useRecoilState(showCartState);
 
   useEffect(() => {
     return () => setShowCart(false);
