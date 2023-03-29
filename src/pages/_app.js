@@ -12,9 +12,9 @@ const roboto = Roboto({
 });
 import MenuDrawer from "@/Asides/MenuAside";
 import CartDrawer from "@/Asides/CartAside";
-import contextApi from "@/context";
+import contextApi from "@/context/useAppContext";
 
-import { createContext, useState } from "react";
+import { createContext } from "react";
 export const App_Context = createContext();
 
 const queryClient = new QueryClient();

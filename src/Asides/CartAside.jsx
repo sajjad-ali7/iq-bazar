@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { AiOutlineClose } from "react-icons/ai";
 import emptyBag from "../../public/emptyBag.json";
 import Lottie from "lottie-react-web";
@@ -11,6 +12,7 @@ const CartDrawer = () => {
 
   useEffect(() => {
     return () => setShowCart(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
