@@ -51,18 +51,30 @@ const CartDrawer = () => {
                   animationData: showCart && emptyBag,
                 }}
               /> */}
-              <div>
-                <div className="h-[75vh] overflow-auto">
-                  {/* <h1 className=" mt-28 text-center text-2xl">
-                    No Product Found
-                  </h1> */}
-                </div>
+              <div className=" ">
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
               </div>
-              <div className="overflow-hidden mt-2 text-center rounded-3xl w-full flex items-center justify-between">
-                <p className="px-3">checkout</p>
-                <p className="py-3 px-5 rounded-3xl text-bgColor bg-fontColor">
-                  $100
-                </p>
+              <div className=" sticky bottom-0 left-0 py-2">
+                <div className="bg-fontColor overflow-hidden p-0 text-center rounded-3xl w-full flex items-center justify-between">
+                  <p className="px-3 text-bgColor">checkout</p>
+                  <p className="py-3 px-5 rounded-3xl text-fontColor bg-bgColor">
+                    $100
+                  </p>
+                </div>
               </div>
             </div>
           </div>

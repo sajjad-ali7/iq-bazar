@@ -6,6 +6,10 @@ import {
   showMenuDrawerState,
   showProdcutModalState,
 } from "@/recoil";
+import Navbar from "./Navbar";
+import CartDrawer from "@/Asides/CartAside";
+import MenuDrawer from "@/Asides/MenuAside";
+import Container from "./Container";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -24,13 +28,17 @@ const Main = ({ children }) => {
     setOverflowY(cartAside || prodcutModal || menuAside);
   }, [prodcutModal, menuAside, cartAside]);
 
-  console.log(overflowY);
   return (
     <main
       className={`${roboto.className} ${
         overflowY ? "overflow-hidden max-h-screen" : ""
       }`}
     >
+      <Container>
+        <Navbar />
+      </Container>
+      <CartDrawer />
+      <MenuDrawer />
       {children}
     </main>
   );

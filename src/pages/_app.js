@@ -18,11 +18,6 @@ export default function App({ Component, pageProps }) {
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <Main>
-          <Container>
-            <Navbar />
-          </Container>
-          <CartDrawer />
-          <MenuDrawer />
           <Component {...pageProps} />
         </Main>
       </RecoilRoot>
