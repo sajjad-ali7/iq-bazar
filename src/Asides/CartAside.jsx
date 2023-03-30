@@ -25,14 +25,14 @@ const CartDrawer = () => {
         style={{ zIndex: CART_DRAWER_INDEX }}
       ></div>
       <div
-        className={`bg-drawerBg transition-all h-screen overflow-y-scroll duration-500 min-h-screen fixed top-0 ${
+        className={`bg-drawerBg w-11/12 md:w-[500px] transition-all h-screen  overflow-y-scroll duration-500 min-h-screen fixed top-0 ${
           showCart ? "right-0" : "-right-full"
         } `}
         style={{ zIndex: CART_DRAWER_INDEX }}
       >
-        <div className="drawer-content">
+        <div className="drawer-content ">
           <CartButton showCart={showCart} setShowCart={setShowCart} />
-          <div className="pt-5 p-2 w-80 ">
+          <div className="pt-5 p-2">
             <div className="flex items-center justify-between border-b pb-5 mb-1">
               <p className="flex items-center justify-between gap-1 text-fontColor text-lg">
                 <FiShoppingBag />
@@ -45,13 +45,13 @@ const CartDrawer = () => {
                 <AiOutlineClose />
               </button>
             </div>
-            <div className=" relative max-w-full">
+            <div className=" relative max-w-screen">
               {/* <Lottie
                 options={{
                   animationData: showCart && emptyBag,
                 }}
               /> */}
-              <div className=" ">
+              <div className="min-h-[80vh]">
                 <CartItem />
                 <CartItem />
                 <CartItem />
@@ -68,7 +68,7 @@ const CartDrawer = () => {
                 <CartItem />
                 <CartItem />
               </div>
-              <div className=" sticky bottom-0 left-0 py-2">
+              <div className="bg-white sticky bottom-0 left-0 py-2">
                 <div className="bg-fontColor overflow-hidden p-0 text-center rounded-3xl w-full flex items-center justify-between">
                   <p className="px-3 text-bgColor">checkout</p>
                   <p className="py-3 px-5 rounded-3xl text-fontColor bg-bgColor">
@@ -112,20 +112,10 @@ const CartItem = () => {
       <div
         className={`flex py-2 w-full mb-2 px-1 rounded-md items-center gap-4`}
       >
-        <div className="flex  flex-col bg-gray-200 p-1 rounded-md items-center justify-center">
-          <button
-            className="text-2xl"
-            onClick={() => setAmount((prev) => ++prev)}
-          >
-            +
-          </button>
+        <div className="flex flex-col px-2 bg-gray-200 p-1 rounded-2xl items-center justify-center text-2xl">
+          <button onClick={() => setAmount((prev) => ++prev)}>+</button>
           <span className="text-xl -mb-1">{amount}</span>
-          <button
-            className="text-2xl"
-            onClick={() => setAmount((prev) => --prev)}
-          >
-            -
-          </button>
+          <button onClick={() => setAmount((prev) => --prev)}>-</button>
         </div>
         <div className="flex flex-grow gap-3 items-center">
           <div>
@@ -137,16 +127,19 @@ const CartItem = () => {
               height={80}
             />
           </div>
-          <div className="flex-grow h-16 flex flex-col justify-between">
-            <p>product name</p>
-            <div className="flex justify-between items-center ">
-              <p>${22 * amount}</p>
-              <button
-                onClick={() => setAmount(0)}
-                className="block ml-auto mr-3 scale-150"
-              >
-                <AiOutlineClose />
-              </button>
+          <div className="flex-grow h-[70px]  flex flex-col justify-between">
+            <p className="font-bold text-lg">product name</p>
+            <div className="flex justify-between items-center font-semibold text-lg">
+              <p>$22</p>
+              <div className="flex items-center justify-center gap-4">
+                <p>${22 * amount}</p>
+                <button
+                  onClick={() => setAmount(0)}
+                  className="transition-all duration-300 rounded-full p-[3px] block bg-stone-200 text-fontColor hover:text-red-600 ml-auto mr-3 "
+                >
+                  <AiOutlineClose />
+                </button>
+              </div>
             </div>
           </div>
         </div>
