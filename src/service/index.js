@@ -1,19 +1,4 @@
 import { default as axiosInstanace } from "./Axios";
-import { getAuth, signInAnonymously } from "firebase/auth";
-import { app } from "@/fireBase";
-
-const auth = getAuth(app);
-
-signInAnonymously(auth)
-  .then((el) => {
-    localStorage.setItem("userId", el.user.uid);
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(error);
-    // ...
-  });
 
 export const getProducts = async (currentPage) => {
   try {

@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { CART_ITEMS } from "@/consts";
-import { db } from "@/fireBase";
-import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 
 const Product = (props) => {

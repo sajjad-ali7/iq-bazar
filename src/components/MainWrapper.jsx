@@ -15,7 +15,7 @@ const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
-const Main = ({ children }) => {
+const MainWrapper = ({ children }) => {
   const menuAside = useRecoilValue(showMenuDrawerState);
   const prodcutModal = useRecoilValue(showProdcutModalState);
   const cartAside = useRecoilValue(showCartState);
@@ -44,4 +44,4 @@ const Main = ({ children }) => {
   );
 };
 
-export default Main;
+export default MainWrapper;
