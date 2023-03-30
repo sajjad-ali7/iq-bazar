@@ -19,15 +19,12 @@ const MainWrapper = ({ children }) => {
   const menuAside = useRecoilValue(showMenuDrawerState);
   const prodcutModal = useRecoilValue(showProdcutModalState);
   const cartAside = useRecoilValue(showCartState);
-  const [overflowY, setOverflowY] = useState(
-    cartAside || prodcutModal || menuAside
-  );
+  const [overflowY, setOverflowY] = useState(cartAside || menuAside);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    setOverflowY(cartAside || prodcutModal || menuAside);
-  }, [prodcutModal, menuAside, cartAside]);
-
+    setOverflowY(cartAside || menuAside);
+  }, [, menuAside, cartAside]);
   return (
     <main
       className={`${roboto.className} ${

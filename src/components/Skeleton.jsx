@@ -1,8 +1,8 @@
 import React from "react";
 
-const Skeleton = () => {
+const Skeleton = (key) => {
   return (
-    <div>
+    <div key={key}>
       <div className=" cursor-pointer overflow-hidden rounded-md transition-all duration-500 hover:-translate-y-2 bg-white">
         <div className="overflow-hidden ">
           <div className="w-full max-h-[305px] min-h-[304px] animate-pulse  bg-stone-300"></div>

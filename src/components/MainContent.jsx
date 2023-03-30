@@ -1,25 +1,21 @@
 import { Spinner } from "@/pages/Contact";
 import { useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { MdFace2 } from "react-icons/md";
-import { RiEyeCloseFill } from "react-icons/ri";
-import { GiLipstick } from "react-icons/gi";
-import { FaGem } from "react-icons/fa";
 import Skeleton from "./Skeleton";
 import Product from "./Product";
+import { showProdcutModalState } from "@/recoil";
+import { useRecoilState } from "recoil";
 
-const MainContent = ({
-  currentPage,
-  setCurrentPage,
-  products,
-  onLoadMoreClick,
-  loader,
-}) => {
+const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
   const ref = useRef(null);
   const isInView = useInView(ref);
-
+  const [showProductModal, setShowProductModal] = useRecoilState(
+    showProdcutModalState
+  );
   //makes array with length (20) filled with <Skeleton /> Component
-  const skeletonArr = Array.from({ length: 20 }, () => <Skeleton />);
+  const skeletonArr = Array.from({ length: 20 }, (e, i) => (
+    <Skeleton key={i} />
+  ));
 
   useEffect(() => {
     if (isInView) {
@@ -35,7 +31,14 @@ const MainContent = ({
       <div className="flex-grow">
         <div className=" products-auto-cols">
           {products.length > 0
-            ? products?.map((product) => <Product {...product} />)
+            ? products?.map((product, i) => (
+                <Product
+                  key={i}
+                  {...product}
+                  setShowProductModal={setShowProductModal}
+                  showProductModal={showProductModal}
+                />
+              ))
             : skeletonArr}
         </div>
 
