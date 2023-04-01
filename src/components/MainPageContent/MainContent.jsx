@@ -1,11 +1,23 @@
 import { Spinner } from "@/pages/Contact";
 import { useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import Skeleton from "./Skeleton";
-import Product from "./Product";
+import Skeleton from "../Skeleton";
+import Product from "../Product";
 import { showProdcutModalState } from "@/recoil";
 import { useRecoilState } from "recoil";
-
+import Portal from "@/Portal";
+import Modal from "react-modal";
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    backgroundColor: "red",
+  },
+};
 const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
   const ref = useRef(null);
   const isInView = useInView(ref);
@@ -21,6 +33,7 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
     if (isInView) {
       onLoadMoreClick();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInView]);
 
   return (
@@ -31,14 +44,16 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
       <div className="flex-grow">
         <div className=" products-auto-cols">
           {products.length > 0
-            ? products?.map((product, i) => (
-                <Product
-                  key={i}
-                  {...product}
-                  setShowProductModal={setShowProductModal}
-                  showProductModal={showProductModal}
-                />
-              ))
+            ? products
+                ?.slice(0, 2)
+                .map((product, i) => (
+                  <Product
+                    key={i}
+                    {...product}
+                    setShowProductModal={setShowProductModal}
+                    showProductModal={showProductModal}
+                  />
+                ))
             : skeletonArr}
         </div>
 
@@ -54,6 +69,21 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
             {isInView ? <Spinner /> : null}
           </button>
         )}
+      </div>
+      {/* {showProductModal && (
+        <Portal setShowModal={setShowProductModal}>
+          <ProductModal setShowModal={setShowProductModal} />
+        </Portal>
+      )} */}
+      <div style={{ zIndex: 1212122112 }}>
+        <Modal
+          isOpen={showProdcutModalState}
+          onRequestClose={() => setShowProductModal(false)}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <ProductModal />
+        </Modal>
       </div>
     </div>
   );
@@ -128,5 +158,13 @@ const Categories = () => {
         <li>Bath & Oil</li>
       </ul>
     </div>
+  );
+};
+
+const ProductModal = ({ setShowModal }) => {
+  return (
+    <>
+      <div>helllllo</div>
+    </>
   );
 };

@@ -1,6 +1,6 @@
 import Container from "@/components/Container";
 import Hero from "@/components/Hero";
-import MainContent from "@/components/MainContent";
+import MainContent from "@/components/MainPageContent/MainContent";
 import Slides from "@/components/Slides";
 import { getProducts } from "@/service";
 import Head from "next/head";

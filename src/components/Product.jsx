@@ -1,13 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 
+import Portal from "@/Portal";
+import { showProdcutModalState } from "@/recoil";
+import { useRecoilState } from "recoil";
+
 const Product = ({ key, ...props }) => {
   const { name, price, image: { original } = "" } = props;
+  const [showModal, setShowModal] = useRecoilState(showProdcutModalState);
 
   if (!props) return;
 
   return (
     <>
       <div
+        onClick={() => setShowModal(true)}
         key={key}
         className=" cursor-pointer overflow-hidden rounded-md transition-all duration-500 hover:-translate-y-2 bg-white"
       >
@@ -33,7 +39,6 @@ const Product = ({ key, ...props }) => {
               +
             </p>
           </button>
-          {/* )} */}
         </div>
       </div>
     </>
