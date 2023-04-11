@@ -3,6 +3,7 @@ import ModalSlider from "@/components/ModalSlider";
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 import { AiFillHeart, AiFillStar, AiOutlineHeart } from "react-icons/ai";
+import { GrClose } from "react-icons/gr";
 
 const ProductModal = ({ setShowProductModal, showProductModal, data }) => {
   console.log(data);
@@ -21,6 +22,13 @@ const ProductModal = ({ setShowProductModal, showProductModal, data }) => {
         <div className="flex min-h-full items-center justify-center p-4">
           {/* The actual dialog panel  */}
           <Dialog.Panel className="mx-auto mb-20 w-10/12  rounded bg-white">
+            <button
+              onClick={() => setShowProductModal(false)}
+              className="block ml-auto px-7 py-2 text-xl"
+            >
+              <GrClose className="mt-3" />
+            </button>
+
             <Dialog.Description>
               <ProductModalContent data={data} />
             </Dialog.Description>
@@ -103,10 +111,12 @@ const ProductModalContent = ({ data }) => {
             ) : null}
           </div>
           <h3 className="flex items-center gap-4 font-semibold">
-            <span className="text-3xl">${sale_price}</span>
-            <span className="line-through text-stone-400 text-lg">
-              ${price}
-            </span>
+            <span className="text-3xl">${sale_price || price}</span>
+            {sale_price && (
+              <span className="line-through text-stone-400 text-lg">
+                ${price}
+              </span>
+            )}
           </h3>
 
           <div className="flex items-center flex-wrap mt-10 gap-5">
