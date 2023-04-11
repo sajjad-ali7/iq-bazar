@@ -28,9 +28,7 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
       <div className="flex-grow">
         <div className=" products-auto-cols">
           {products.length > 0
-            ? products
-                ?.slice(0, 2)
-                .map((product, i) => <Product key={i} {...product} />)
+            ? products?.map((product, i) => <Product key={i} {...product} />)
             : skeletonArr}
         </div>
 

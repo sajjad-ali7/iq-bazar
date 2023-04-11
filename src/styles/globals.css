@@ -137,7 +137,7 @@
   color: #e8e8ea;
 }
 
-::selection:not(.swiper-container) {
+::selection {
   background-color: #0a2647;
   color: #e8e8ea;
 }
