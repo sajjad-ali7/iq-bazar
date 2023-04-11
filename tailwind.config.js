@@ -7,6 +7,7 @@ module.exports = {
         fontColor: "#0A2647",
         bgColor: "#fafafa",
         drawerBg: "#f9f9f9",
+        secondFColor: "#6b7280",
       },
     },
   },

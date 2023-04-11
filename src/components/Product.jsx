@@ -1,19 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 
-import Portal from "@/Portal";
-import { showProdcutModalState } from "@/recoil";
-import { useRecoilState } from "recoil";
+import ProductModal from "@/modal/ProductModal";
+import { useState } from "react";
 
 const Product = ({ key, ...props }) => {
   const { name, price, image: { original } = "" } = props;
-  const [showModal, setShowModal] = useRecoilState(showProdcutModalState);
+  const [showProductModal, setShowProductModal] = useState(false);
 
   if (!props) return;
 
   return (
     <>
       <div
-        onClick={() => setShowModal(true)}
+        onClick={() => setShowProductModal(true)}
         key={key}
         className=" cursor-pointer overflow-hidden rounded-md transition-all duration-500 hover:-translate-y-2 bg-white"
       >
@@ -33,7 +32,7 @@ const Product = ({ key, ...props }) => {
           </p>
           <h1 className="text-xl">${price}</h1>
 
-          <button className="product-btn mt-2">
+          <button className="product-btn w-full bg-stone-200 h-8 mt-2">
             <p className="flex-grow btn-text py-[4px]">Add</p>
             <p className=" rounded-md btn-counter w-1/4 py-[4px] bg-stone-300 ">
               +
@@ -41,6 +40,12 @@ const Product = ({ key, ...props }) => {
           </button>
         </div>
       </div>
+
+      <ProductModal
+        data={props}
+        setShowProductModal={setShowProductModal}
+        showProductModal={showProductModal}
+      />
     </>
   );
 };
@@ -49,7 +54,7 @@ export default Product;
 
 {
   /* {isInLocal ? (
-          <button className="product-btn mt-2">
+          <button className="product-btn bg-stone-200 h-8 w-full mt-2">
           <p className="btn-counter w-1/4" onClick={() => decrement(id)}>
           -
           </p>

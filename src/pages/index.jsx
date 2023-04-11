@@ -13,10 +13,12 @@ export default function Home() {
 
   useEffect(() => {
     setLoader(true);
-    getProducts(currentPage).then((res) => {
-      setProducts((prev) => [...prev, ...res.data.data]);
-      setLoader(false);
-    });
+    getProducts(currentPage)
+      .then((res) => {
+        setProducts((prev) => [...prev, ...res.data.data]);
+        setLoader(false);
+      })
+      .catch((err) => console.log(err));
   }, [currentPage]);
 
   const onLoadMoreClick = () => {

@@ -112,7 +112,7 @@
 }
 
 .product-btn {
-  @apply flex items-center transition-all h-8 text-center w-full rounded-md bg-stone-200 hover:bg-fontColor overflow-hidden [&>p]:hover:text-fontColor;
+  @apply flex items-center transition-all  text-center  rounded-md  hover:bg-fontColor overflow-hidden [&>p]:hover:text-fontColor;
 }
 
 .product-btn p {
@@ -133,10 +133,11 @@
   justify-content: center;
   align-items: center;
   background-color: #03244a;
+  height: 100%;
   color: #e8e8ea;
 }
 
-::selection {
+::selection:not(.swiper-container) {
   background-color: #0a2647;
   color: #e8e8ea;
 }

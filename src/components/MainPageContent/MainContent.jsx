@@ -3,27 +3,11 @@ import { useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Skeleton from "../Skeleton";
 import Product from "../Product";
-import { showProdcutModalState } from "@/recoil";
-import { useRecoilState } from "recoil";
-import Portal from "@/Portal";
-import Modal from "react-modal";
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "red",
-  },
-};
+
 const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
   const ref = useRef(null);
   const isInView = useInView(ref);
-  const [showProductModal, setShowProductModal] = useRecoilState(
-    showProdcutModalState
-  );
+
   //makes array with length (20) filled with <Skeleton /> Component
   const skeletonArr = Array.from({ length: 20 }, (e, i) => (
     <Skeleton key={i} />
@@ -37,7 +21,7 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
   }, [isInView]);
 
   return (
-    <div className="flex gap-2 max-xl:flex-col p-4">
+    <div className={`flex gap-2 max-xl:flex-col p-4 `}>
       <div className="w-1/4 p-2">
         <Categories />
       </div>
@@ -46,14 +30,7 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
           {products.length > 0
             ? products
                 ?.slice(0, 2)
-                .map((product, i) => (
-                  <Product
-                    key={i}
-                    {...product}
-                    setShowProductModal={setShowProductModal}
-                    showProductModal={showProductModal}
-                  />
-                ))
+                .map((product, i) => <Product key={i} {...product} />)
             : skeletonArr}
         </div>
 
@@ -69,21 +46,6 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
             {isInView ? <Spinner /> : null}
           </button>
         )}
-      </div>
-      {/* {showProductModal && (
-        <Portal setShowModal={setShowProductModal}>
-          <ProductModal setShowModal={setShowProductModal} />
-        </Portal>
-      )} */}
-      <div style={{ zIndex: 1212122112 }}>
-        <Modal
-          isOpen={showProdcutModalState}
-          onRequestClose={() => setShowProductModal(false)}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <ProductModal />
-        </Modal>
       </div>
     </div>
   );
@@ -158,13 +120,5 @@ const Categories = () => {
         <li>Bath & Oil</li>
       </ul>
     </div>
-  );
-};
-
-const ProductModal = ({ setShowModal }) => {
-  return (
-    <>
-      <div>helllllo</div>
-    </>
   );
 };

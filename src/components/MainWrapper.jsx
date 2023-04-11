@@ -17,7 +17,7 @@ const roboto = Roboto({
 });
 const MainWrapper = ({ children }) => {
   const menuAside = useRecoilValue(showMenuDrawerState);
-  const prodcutModal = useRecoilValue(showProdcutModalState);
+  // const prodcutModal = useRecoilValue(showProdcutModalState);
   const cartAside = useRecoilValue(showCartState);
   const [overflowY, setOverflowY] = useState(cartAside || menuAside);
 
