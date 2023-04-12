@@ -22,7 +22,7 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
 
   return (
     <div className={`flex gap-2 max-xl:flex-col p-4 `}>
-      <div className="w-1/4 p-2">
+      <div className="w-1/6 p-2">
         <Categories />
       </div>
       <div className="flex-grow">
