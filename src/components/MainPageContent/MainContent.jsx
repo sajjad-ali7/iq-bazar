@@ -3,6 +3,8 @@ import { useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Skeleton from "../Skeleton";
 import Product from "../Product";
+import Categories from "../Categories";
+import CategoriesModal from "@/Asides/CategoriesModal";
 
 const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
   const ref = useRef(null);
@@ -21,9 +23,14 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
   }, [isInView]);
 
   return (
-    <div className={`flex gap-2 max-xl:flex-col p-4 `}>
-      <div className="w-1/6 p-2">
-        <Categories />
+    <div className={`flex relative gap-2 max-xl:flex-col p-4 `}>
+      <div className="max-xl:w-full w-1/6 p-2">
+        <div className="max-xl:hidden">
+          <Categories />
+        </div>
+        <div className="block xl:hidden">
+          <CategoriesModal />
+        </div>
       </div>
       <div className="flex-grow">
         <div className=" products-auto-cols">
@@ -50,73 +57,3 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
 };
 
 export default MainContent;
-
-const Categories = () => {
-  const [openList, setOpenList] = useState("");
-
-  const handleClick = (event) => {
-    if (+event.target.dataset.index === openList) return setOpenList("");
-    setOpenList(+event.target.dataset.index);
-  };
-  return (
-    <div>
-      <ul className="[&>li]:py-1 font-semibold text-lg">
-        <li data-index={0} onClick={(e) => handleClick(e)}>
-          {/* <MdFace2 className="inline-block mx-1" /> */}
-          Face
-          <ul
-            className={`[&>li]:py-1 transition-all duration-500 ${
-              openList === 0
-                ? "text-fontColor h-24 opacity-100"
-                : "h-0 opacity-0 pointer-events-none"
-            }`}
-          >
-            <li>Blusher</li>
-            <li>Foundation</li>
-            <li>Face Powder</li>
-          </ul>
-        </li>
-        <li data-index={1} onClick={(e) => handleClick(e)}>
-          {/* <RiEyeCloseFill className="inline-block mx-1" />  */}
-          Eyes
-          <ul
-            className={`[&>li]:py-1 transition-all duration-500 ${
-              openList === 1
-                ? "text-fontColor h-24 opacity-100"
-                : "h-0 opacity-0 pointer-events-none"
-            }`}
-          >
-            <li>Eye Shadow</li>
-            <li>Glitter</li>
-            <li>Mascara</li>
-          </ul>
-        </li>
-        <li data-index={2} onClick={(e) => handleClick(e)}>
-          {/* <GiLipstick className="inline-block mx-1" />  */}
-          Lips
-          <ul
-            className={`[&>li]:py-1 transition-all duration-500 ${
-              openList === 2
-                ? "text-fontColor h-24 opacity-100"
-                : "h-0 opacity-0 pointer-events-none"
-            }`}
-          >
-            <li>Lip Gloss</li>
-            <li>Lip Stick</li>
-            <li>Lip Kit</li>
-          </ul>
-        </li>
-        {/* <FaGem className="inline-block mx-1" />  */}
-        <li>Accessories</li>
-        <li>Shaving Needs</li>
-        <li>Oral Care</li>
-        <li className="flex items-center gap-2">
-          {/* <img src="/svgexport-15.svg" alt="" /> */}
-          Facial Care
-        </li>
-        <li>Deodorant</li>
-        <li>Bath & Oil</li>
-      </ul>
-    </div>
-  );
-};

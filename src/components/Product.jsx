@@ -6,17 +6,28 @@ import { useState } from "react";
 const Product = ({ key, ...props }) => {
   const { name, price, image: { original } = "" } = props;
   const [showProductModal, setShowProductModal] = useState(false);
-
+  const [counter, setCounter] = useState(0);
   if (!props) return;
+
+  const decrement = () => {
+    setCounter((prev) => --prev);
+  };
+  const increment = () => {
+    setCounter((prev) => ++prev);
+  };
+
+  console.log(counter);
 
   return (
     <>
       <div
-        onClick={() => setShowProductModal(true)}
         key={key}
         className=" cursor-pointer overflow-hidden rounded-md transition-all duration-500 hover:-translate-y-2 bg-white"
       >
-        <div className="overflow-hidden ">
+        <div
+          className="overflow-hidden"
+          onClick={() => setShowProductModal(true)}
+        >
           <img
             src={original}
             alt="product"
@@ -33,10 +44,32 @@ const Product = ({ key, ...props }) => {
           <h1 className="text-xl">${price}</h1>
 
           <button className="product-btn w-full bg-stone-200 h-8 mt-2">
-            <p className="flex-grow btn-text py-[4px]">Add</p>
-            <p className=" rounded-md btn-counter w-1/4 py-[4px] bg-stone-300 ">
-              +
-            </p>
+            {counter > 0 ? (
+              <>
+                <p className="btn-counter w-1/4" onClick={() => decrement()}>
+                  -
+                </p>
+                <p className="grow btn-text">{counter}</p>
+                <p className="btn-counter w-1/4" onClick={() => increment()}>
+                  +
+                </p>
+              </>
+            ) : (
+              <>
+                <p
+                  className="flex-grow btn-text py-[4px]"
+                  onClick={() => increment()}
+                >
+                  Add
+                </p>
+                <p
+                  className=" rounded-md btn-counter w-1/4 py-[4px] bg-stone-300 "
+                  onClick={() => increment()}
+                >
+                  +
+                </p>
+              </>
+            )}
           </button>
         </div>
       </div>
@@ -51,17 +84,3 @@ const Product = ({ key, ...props }) => {
 };
 
 export default Product;
-
-{
-  /* {isInLocal ? (
-          <button className="product-btn bg-stone-200 h-8 w-full mt-2">
-          <p className="btn-counter w-1/4" onClick={() => decrement(id)}>
-          -
-          </p>
-          <p className="grow btn-text">{isInLocal.amount}</p>
-          <p className="btn-counter w-1/4" onClick={() => increment(id)}>
-          +
-          </p>
-          </button>
-        ) : ( */
-}
