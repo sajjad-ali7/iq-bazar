@@ -2,15 +2,16 @@ import Container from "@/components/Container";
 import Hero from "@/components/Hero";
 import MainContent from "@/components/MainPageContent/MainContent";
 import Slides from "@/components/Slides";
+import { productsArr } from "@/recoil";
 import { getProducts } from "@/service";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useRecoilState(productsArr);
   const [currentPage, setCurrentPage] = useState(1);
   const [loader, setLoader] = useState(false);
-
   useEffect(() => {
     setLoader(true);
     getProducts(currentPage)
@@ -19,6 +20,7 @@ export default function Home() {
         setLoader(false);
       })
       .catch((err) => console.log(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   const onLoadMoreClick = () => {

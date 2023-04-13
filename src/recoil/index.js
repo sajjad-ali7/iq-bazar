@@ -11,3 +11,7 @@ export const showProdcutModalState = atom({
   key: "showProdcutModal",
   default: false,
 });
+export const productsArr = atom({
+  key: "products",
+  default: [],
+});

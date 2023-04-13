@@ -6,7 +6,6 @@ import { AiFillHeart, AiFillStar, AiOutlineHeart } from "react-icons/ai";
 import { GrClose } from "react-icons/gr";
 
 const ProductModal = ({ setShowProductModal, showProductModal, data }) => {
-  console.log(data);
   return (
     <Dialog
       open={showProductModal}

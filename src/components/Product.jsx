@@ -16,8 +16,6 @@ const Product = ({ key, ...props }) => {
     setCounter((prev) => ++prev);
   };
 
-  console.log(counter);
-
   return (
     <>
       <div
