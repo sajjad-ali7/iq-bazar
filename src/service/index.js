@@ -1,10 +1,8 @@
 import { default as axiosInstanace } from "./Axios";
 
-export const getProducts = async (currentPage) => {
+export const getProducts = async (val) => {
   try {
-    const res = await axiosInstanace.get(
-      `products?;limit=20&page=${currentPage}&search=type.slug:makeup`
-    );
+    const res = await axiosInstanace.get(val);
     return res;
   } catch (err) {
     console.log(err);
@@ -25,7 +23,7 @@ export const getProductsBySearch = async (searchValue) => {
 export const getProductsByCategory = async (currentPage, searchValue) => {
   try {
     const res = await axiosInstanace.get(
-      `products?;limit=20&page=${currentPage}&search=type.slug:makeup;name:${searchValue};status:publish`
+      `products?searchJoin=and&with=type%3Bauthor&limit=30&language=en&search=type.slug:makeup%3Bcategories.slug:accessories-1%3Bstatus:publish`
     );
     return res;
   } catch (err) {

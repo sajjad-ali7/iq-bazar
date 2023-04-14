@@ -1,27 +1,56 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Container from "@/components/Container";
 import Hero from "@/components/Hero";
 import MainContent from "@/components/MainPageContent/MainContent";
 import Slides from "@/components/Slides";
-import { productsArr } from "@/recoil";
+import { onSearch } from "@/helpers";
+import { getQueryState, productsArr } from "@/recoil";
 import { getProducts } from "@/service";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 export default function Home() {
+  //getTypes is ['all' , 'search' , 'categories']
+  const [getType, setGetType] = useState("all");
+  const [getQuery, setGetQuery] = useRecoilState(getQueryState);
   const [products, setProducts] = useRecoilState(productsArr);
   const [currentPage, setCurrentPage] = useState(1);
+  const [lastPage, setLastPage] = useState(null);
   const [loader, setLoader] = useState(false);
+
+  const fetchData = async () => {
+    const { data: res } = await getProducts(getQuery);
+    setLastPage(res.last_page);
+    setProducts((prev) => [...prev, ...res.data]);
+  };
+
+  //first render gets random products and whenever the query change
   useEffect(() => {
-    setLoader(true);
-    getProducts(currentPage)
-      .then((res) => {
-        setProducts((prev) => [...prev, ...res.data.data]);
-        setLoader(false);
-      })
-      .catch((err) => console.log(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchData();
+
+    return () => {
+      setCurrentPage(1);
+      setGetType("all");
+    };
+  }, [getQuery]);
+
+  //if the query type change reset the main states
+  useEffect(() => {
+    setCurrentPage(1);
+    setProducts([]);
+  }, [getType]);
+
+  useEffect(() => {
+    fetchData();
   }, [currentPage]);
+
+  //on search submit change the queryType state
+  const onSearchClick = (searchVal) => {
+    setGetType("search");
+
+    setGetQuery(onSearch(searchVal, 1));
+  };
 
   const onLoadMoreClick = () => {
     setCurrentPage((prev) => prev + 1);
@@ -38,7 +67,7 @@ export default function Home() {
         </Head>
       </>
 
-      <Hero />
+      <Hero onSearchClick={onSearchClick} />
 
       <div className="bg-white p-5">
         <Container>
@@ -48,10 +77,11 @@ export default function Home() {
 
       <Container>
         <MainContent
+          lastPage={lastPage}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           loader={loader}
-          products={products}
+          products={products || []}
           onLoadMoreClick={onLoadMoreClick}
         />
       </Container>

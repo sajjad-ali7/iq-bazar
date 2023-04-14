@@ -1,6 +1,6 @@
 import SearchBar from "./SearchBar";
 
-const Hero = () => {
+const Hero = ({ onSearchClick }) => {
   return (
     <div className="relative h-[600px] max-md:hidden">
       <div
@@ -18,7 +18,7 @@ const Hero = () => {
             <p className="text-lg mb-3 font-bold">
               Easiest and cheapest way to get your branded & imported makeups
             </p>
-            <SearchBar />
+            <SearchBar onSearchClick={onSearchClick} />
           </div>
         </div>
       </div>

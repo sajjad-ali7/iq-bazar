@@ -6,7 +6,13 @@ import Product from "../Product";
 import Categories from "../Categories";
 import CategoriesModal from "@/Asides/CategoriesModal";
 
-const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
+const MainContent = ({
+  currentPage,
+  lastPage,
+  products,
+  onLoadMoreClick,
+  loader,
+}) => {
   const ref = useRef(null);
   const isInView = useInView(ref);
 
@@ -39,7 +45,7 @@ const MainContent = ({ currentPage, products, onLoadMoreClick, loader }) => {
             : skeletonArr}
         </div>
 
-        {currentPage !== 3 && (
+        {currentPage !== lastPage && (
           <button
             ref={ref}
             className={`btn mx-auto block mt-8 transition-all duration-500 ${

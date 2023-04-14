@@ -1,3 +1,4 @@
+import { getAllProducts } from "@/helpers";
 import { atom } from "recoil";
 export const showCartState = atom({
   key: "showCart",
@@ -14,4 +15,8 @@ export const showProdcutModalState = atom({
 export const productsArr = atom({
   key: "products",
   default: [],
+});
+export const getQueryState = atom({
+  key: "getQueryState",
+  default: getAllProducts(1),
 });
