@@ -3,7 +3,7 @@ import { CART_DRAWER_INDEX } from "@/consts";
 import { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { VscSettings } from "react-icons/vsc";
-const CategoriesModal = () => {
+const CategoriesModal = ({ onCategorySelect }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <>
@@ -41,7 +41,7 @@ const CategoriesModal = () => {
           </div>
           <hr className="my-5" />
           <div className="px-2">
-            <Categories />
+            <Categories onCategorySelect={onCategorySelect} />
           </div>
         </div>
       </div>

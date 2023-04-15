@@ -3,7 +3,7 @@ import Container from "@/components/Container";
 import Hero from "@/components/Hero";
 import MainContent from "@/components/MainPageContent/MainContent";
 import Slides from "@/components/Slides";
-import { onSearch } from "@/helpers";
+import { onCategoriesSelect, onSearch } from "@/helpers";
 import { getQueryState, productsArr } from "@/recoil";
 import { getProducts } from "@/service";
 import Head from "next/head";
@@ -20,9 +20,11 @@ export default function Home() {
   const [loader, setLoader] = useState(false);
 
   const fetchData = async () => {
+    setLoader(true);
     const { data: res } = await getProducts(getQuery);
     setLastPage(res.last_page);
     setProducts((prev) => [...prev, ...res.data]);
+    setLoader(false);
   };
 
   //first render gets random products and whenever the query change
@@ -48,8 +50,12 @@ export default function Home() {
   //on search submit change the queryType state
   const onSearchClick = (searchVal) => {
     setGetType("search");
-
     setGetQuery(onSearch(searchVal, 1));
+  };
+
+  const onCategorySelect = (categoryName) => {
+    setGetType("categories");
+    setGetQuery(onCategoriesSelect(categoryName));
   };
 
   const onLoadMoreClick = () => {
@@ -77,6 +83,7 @@ export default function Home() {
 
       <Container>
         <MainContent
+          onCategorySelect={onCategorySelect}
           lastPage={lastPage}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
