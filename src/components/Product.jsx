@@ -19,13 +19,11 @@ const Product = ({ key, ...props }) => {
   return (
     <>
       <div
+        onClick={() => setShowProductModal(true)}
         key={key}
         className=" cursor-pointer overflow-hidden rounded-md transition-all duration-500 hover:-translate-y-2 bg-white"
       >
-        <div
-          className="overflow-hidden"
-          onClick={() => setShowProductModal(true)}
-        >
+        <div className="overflow-hidden">
           <img
             src={original}
             alt="product"
@@ -41,7 +39,10 @@ const Product = ({ key, ...props }) => {
           </p>
           <h1 className="text-xl">${price}</h1>
 
-          <button className="product-btn w-full bg-stone-200 h-8 mt-2">
+          <button
+            onClick={(e) => e.stopPropagation()}
+            className="product-btn w-full bg-stone-200 h-8 mt-2"
+          >
             {counter > 0 ? (
               <>
                 <p className="btn-counter w-1/4" onClick={() => decrement()}>

@@ -41,7 +41,7 @@ const MainContent = ({
         </div>
       </div>
       <div className="flex-grow">
-        {products.length === 0 && !loader && (
+        {lastPage === 0 ? (
           <div className="flex flex-col w-full items-center gap-10 py-6">
             <img
               src="/no_data.svg"
@@ -52,25 +52,27 @@ const MainContent = ({
               Sorry, No Product Found
             </h1>
           </div>
+        ) : (
+          <div className=" products-auto-cols">
+            {products.length > 0
+              ? products?.map((product, i) => <Product key={i} {...product} />)
+              : loader && skeletonArr}
+          </div>
         )}
-        <div className=" products-auto-cols">
-          {products.length > 0
-            ? products?.map((product, i) => <Product key={i} {...product} />)
-            : loader && skeletonArr}
-        </div>
 
-        {currentPage !== lastPage && (
-          <button
-            ref={ref}
-            className={`btn mx-auto block mt-8 transition-all duration-500 ${
-              isInView && loader
-                ? "bg-fontColor hover:bg-bgColor hover:text-fontColor"
-                : ""
-            }`}
-          >
-            {isInView ? <Spinner /> : null}
-          </button>
-        )}
+        {currentPage !== lastPage ||
+          (lastPage !== 1 && (
+            <button
+              ref={ref}
+              className={`btn mx-auto block mt-8 transition-all duration-500 ${
+                isInView && loader
+                  ? "bg-fontColor hover:bg-bgColor hover:text-fontColor"
+                  : ""
+              }`}
+            >
+              {isInView ? <Spinner /> : null}
+            </button>
+          ))}
       </div>
     </div>
   );

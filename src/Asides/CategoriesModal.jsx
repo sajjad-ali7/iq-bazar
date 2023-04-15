@@ -33,7 +33,7 @@ const CategoriesModal = ({ onCategorySelect }) => {
               <span>Bazar</span>
             </h1>
             <button
-              onClick={() => setShowProductModal(false)}
+              onClick={() => setIsModalOpen(false)}
               className="block text-xl"
             >
               <GrClose />

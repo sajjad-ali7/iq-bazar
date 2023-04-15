@@ -11,10 +11,11 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 export default function Home() {
-  //getTypes is ['all' , 'search' , 'categories']
-  const [getType, setGetType] = useState("all");
+  //getTypes is [null , 'search' , 'categories']
+  const [getType, setGetType] = useState();
   const [getQuery, setGetQuery] = useRecoilState(getQueryState);
   const [products, setProducts] = useRecoilState(productsArr);
+  const [categoryName, setCategoryName] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState(null);
   const [loader, setLoader] = useState(false);
@@ -30,31 +31,23 @@ export default function Home() {
   //first render gets random products and whenever the query change
   useEffect(() => {
     fetchData();
-
-    return () => {
-      setCurrentPage(1);
-      setGetType("all");
-    };
-  }, [getQuery]);
+  }, [getQuery, currentPage]);
 
   //if the query type change reset the main states
   useEffect(() => {
     setCurrentPage(1);
     setProducts([]);
-  }, [getType]);
-
-  useEffect(() => {
-    fetchData();
-  }, [currentPage]);
+  }, [getType, categoryName]);
 
   //on search submit change the queryType state
   const onSearchClick = (searchVal) => {
     setGetType("search");
-    setGetQuery(onSearch(searchVal, 1));
+    setGetQuery(onSearch(searchVal));
   };
 
   const onCategorySelect = (categoryName) => {
     setGetType("categories");
+    setCategoryName(categoryName);
     setGetQuery(onCategoriesSelect(categoryName));
   };
 

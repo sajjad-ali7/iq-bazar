@@ -1,12 +1,20 @@
 import { useState } from "react";
+import { AiOutlineArrowUp } from "react-icons/ai";
+import { BsFillBagHeartFill } from "react-icons/bs";
+import { FaAirFreshener, FaBath, FaEye, FaGrinWink } from "react-icons/fa";
+import { GiLips, GiLipstick } from "react-icons/gi";
+import { CgBowl } from "react-icons/cg";
+import { RiScissors2Fill } from "react-icons/ri";
 
 const Categories = ({ onCategorySelect }) => {
   const [openList, setOpenList] = useState("");
 
   const handleClick = (event) => {
     if (+event.target.dataset.index === openList) return setOpenList("");
-    setOpenList(+event.target.dataset.index);
+    else setOpenList(+event.target.dataset.index);
   };
+
+  // console.log(openList);
   return (
     <div>
       <ul className="[&>li]:py-1 font-semibold text-lg">
@@ -17,8 +25,19 @@ const Categories = ({ onCategorySelect }) => {
             onCategorySelect("face");
           }}
         >
-          {/* <MdFace2 className="inline-block mx-1" /> */}
-          Face
+          <p data-index={0} className="flex items-center gap-5">
+            <span data-index={0} className="w-4/5">
+              <FaGrinWink className="pr-2 inline-block" fontSize={30} /> Face
+            </span>{" "}
+            <span
+              data-index={0}
+              className={`transition-all duration-300 ${
+                openList === 0 ? "rotate-180" : ""
+              }`}
+            >
+              <AiOutlineArrowUp />
+            </span>
+          </p>
           <ul
             className={`[&>li]:py-1 transition-all duration-500 ${
               openList === 0
@@ -59,8 +78,19 @@ const Categories = ({ onCategorySelect }) => {
             onCategorySelect("eyes");
           }}
         >
-          {/* <RiEyeCloseFill className="inline-block mx-1" />  */}
-          Eyes
+          <p data-index={1} className="flex items-center gap-5">
+            <span data-index={1} className="w-4/5">
+              <FaEye className="pr-2 inline-block" fontSize={30} /> Eyes
+            </span>{" "}
+            <span
+              data-index={1}
+              className={`transition-all duration-300 ${
+                openList === 1 ? "rotate-180" : ""
+              }`}
+            >
+              <AiOutlineArrowUp />
+            </span>
+          </p>
           <ul
             className={`[&>li]:py-1 transition-all duration-500 ${
               openList === 1
@@ -101,8 +131,19 @@ const Categories = ({ onCategorySelect }) => {
             onCategorySelect("lips");
           }}
         >
-          {/* <GiLipstick className="inline-block mx-1" />  */}
-          Lips
+          <p data-index={2} className="flex items-center gap-5">
+            <span data-index={2} className="w-4/5">
+              <GiLips className="pr-2 inline-block" fontSize={30} /> Lips
+            </span>{" "}
+            <span
+              data-index={2}
+              className={`transition-all duration-300 ${
+                openList === 2 ? "rotate-180" : ""
+              }`}
+            >
+              <AiOutlineArrowUp />
+            </span>
+          </p>
           <ul
             className={`[&>li]:py-1 transition-all duration-500 ${
               openList === 2
@@ -137,17 +178,31 @@ const Categories = ({ onCategorySelect }) => {
           </ul>
         </li>
         {/* <FaGem className="inline-block mx-1" />  */}
-        <li onClick={() => onCategorySelect("accessories")}>Accessories</li>
-        <li onClick={() => onCategorySelect("shaving-needs")}>Shaving Needs</li>
-        <li onClick={() => onCategorySelect("oral-care")}>Oral Care</li>
+        <li onClick={() => onCategorySelect("accessories")}>
+          {" "}
+          <GiLipstick className="pr-2 inline-block" fontSize={30} /> Accessories
+        </li>
+        <li onClick={() => onCategorySelect("shaving-needs")}>
+          <RiScissors2Fill className="pr-2 inline-block" fontSize={30} />{" "}
+          Shaving Needs
+        </li>
+        <li onClick={() => onCategorySelect("oral-care")}>
+          <CgBowl className="pr-2 inline-block" fontSize={30} /> Oral Care
+        </li>
         <li
           className="flex items-center gap-2"
           onClick={() => onCategorySelect("facial-care")}
         >
+          <BsFillBagHeartFill className="pr-2 inline-block" fontSize={30} />{" "}
           Facial Care
         </li>
-        <li onClick={() => onCategorySelect("deodorant")}>Deodorant</li>
-        <li onClick={() => onCategorySelect("bath-oil")}>Bath & Oil</li>
+        <li onClick={() => onCategorySelect("deodorant")}>
+          <FaAirFreshener className="pr-2 inline-block" fontSize={30} />{" "}
+          Deodorant
+        </li>
+        <li onClick={() => onCategorySelect("bath-oil")}>
+          <FaBath className="pr-2 inline-block" fontSize={30} /> Bath & Oil
+        </li>
       </ul>
     </div>
   );
