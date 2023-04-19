@@ -53,7 +53,7 @@ const MainContent = ({
             </h1>
           </div>
         ) : (
-          <div className=" products-auto-cols">
+          <div className=" products-auto-cols max-md:pb-10">
             {products.length > 0
               ? products?.map((product, i) => <Product key={i} {...product} />)
               : loader && skeletonArr}

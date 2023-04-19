@@ -31,13 +31,10 @@ const Product = ({ key, ...props }) => {
           />
         </div>
         <div className="flex flex-col gap-1 mt-2 px-3 pb-3">
-          <p
-            title={name}
-            className="text-md font-semibold text-ellipsis truncate"
-          >
+          <p title={name} className="text-xl text-ellipsis truncate">
             {name}
           </p>
-          <h1 className="text-xl">${price}</h1>
+          <h1 className="text-xl font-bold">${price}</h1>
 
           <button
             onClick={(e) => e.stopPropagation()}
