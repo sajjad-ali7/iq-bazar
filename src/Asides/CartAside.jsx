@@ -53,20 +53,6 @@ const CartDrawer = () => {
               /> */}
               <div className="min-h-[80vh]">
                 <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
               </div>
               <div className="bg-white sticky bottom-0 left-0 py-2">
                 <div className="bg-fontColor overflow-hidden p-0 text-center rounded-3xl w-full flex items-center justify-between">

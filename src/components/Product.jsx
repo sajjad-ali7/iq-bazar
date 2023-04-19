@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 
 import ProductModal from "@/modal/ProductModal";
@@ -7,6 +8,7 @@ const Product = ({ key, ...props }) => {
   const { name, price, image: { original } = "" } = props;
   const [showProductModal, setShowProductModal] = useState(false);
   const [counter, setCounter] = useState(0);
+
   if (!props) return;
 
   const decrement = () => {
@@ -16,6 +18,9 @@ const Product = ({ key, ...props }) => {
     setCounter((prev) => ++prev);
   };
 
+  const toggleLocalStorage = (product) => {
+    console.log(product);
+  };
   return (
     <>
       <div
@@ -25,6 +30,7 @@ const Product = ({ key, ...props }) => {
       >
         <div className="overflow-hidden">
           <img
+            onLoad={(e) => console.log(e)}
             src={original}
             alt="product"
             className="w-full object-cover max-h-[305px] min-h-[304px]"
@@ -37,7 +43,10 @@ const Product = ({ key, ...props }) => {
           <h1 className="text-xl font-bold">${price}</h1>
 
           <button
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleLocalStorage(props);
+            }}
             className="product-btn w-full bg-stone-200 h-8 mt-2"
           >
             {counter > 0 ? (
