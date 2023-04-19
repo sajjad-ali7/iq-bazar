@@ -27,7 +27,8 @@ const Categories = ({ onCategorySelect }) => {
         >
           <p data-index={0} className="flex items-center gap-5">
             <span data-index={0} className="w-4/5">
-              <FaGrinWink className="pr-2 inline-block" fontSize={30} /> Face
+              <FaGrinWink className="pr-1 inline-block pb-2" fontSize={25} />{" "}
+              Face
             </span>{" "}
             <span
               data-index={0}
@@ -80,7 +81,7 @@ const Categories = ({ onCategorySelect }) => {
         >
           <p data-index={1} className="flex items-center gap-5">
             <span data-index={1} className="w-4/5">
-              <FaEye className="pr-2 inline-block" fontSize={30} /> Eyes
+              <FaEye className="pr-2 inline-block pb-2" fontSize={25} /> Eyes
             </span>{" "}
             <span
               data-index={1}
@@ -133,7 +134,7 @@ const Categories = ({ onCategorySelect }) => {
         >
           <p data-index={2} className="flex items-center gap-5">
             <span data-index={2} className="w-4/5">
-              <GiLips className="pr-2 inline-block" fontSize={30} /> Lips
+              <GiLips className="pr-2 inline-block pb-2" fontSize={25} /> Lips
             </span>{" "}
             <span
               data-index={2}
@@ -180,28 +181,32 @@ const Categories = ({ onCategorySelect }) => {
         {/* <FaGem className="inline-block mx-1" />  */}
         <li onClick={() => onCategorySelect("accessories")}>
           {" "}
-          <GiLipstick className="pr-2 inline-block" fontSize={30} /> Accessories
+          <GiLipstick className="pr-2 inline-block pb-2" fontSize={25} />{" "}
+          Accessories
         </li>
         <li onClick={() => onCategorySelect("shaving-needs")}>
-          <RiScissors2Fill className="pr-2 inline-block" fontSize={30} />{" "}
+          <RiScissors2Fill className="pr-2 inline-block pb-2" fontSize={25} />{" "}
           Shaving Needs
         </li>
         <li onClick={() => onCategorySelect("oral-care")}>
-          <CgBowl className="pr-2 inline-block" fontSize={30} /> Oral Care
+          <CgBowl className="pr-2 inline-block pb-2" fontSize={25} /> Oral Care
         </li>
         <li
           className="flex items-center gap-2"
           onClick={() => onCategorySelect("facial-care")}
         >
-          <BsFillBagHeartFill className="pr-2 inline-block" fontSize={30} />{" "}
+          <BsFillBagHeartFill
+            className="pr-2 inline-block pb-2"
+            fontSize={25}
+          />{" "}
           Facial Care
         </li>
         <li onClick={() => onCategorySelect("deodorant")}>
-          <FaAirFreshener className="pr-2 inline-block" fontSize={30} />{" "}
+          <FaAirFreshener className="pr-2 inline-block pb-2" fontSize={25} />{" "}
           Deodorant
         </li>
         <li onClick={() => onCategorySelect("bath-oil")}>
-          <FaBath className="pr-2 inline-block" fontSize={30} /> Bath & Oil
+          <FaBath className="pr-2 inline-block pb-2" fontSize={25} /> Bath & Oil
         </li>
       </ul>
     </div>
