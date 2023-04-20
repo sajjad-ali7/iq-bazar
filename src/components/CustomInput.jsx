@@ -12,7 +12,7 @@ const CustomInput = ({ label, type = "input", ...props }) => {
             meta.touched && meta.error
               ? "border border-red-600"
               : "border border-fontColor"
-          } outline-none p-1 transition-all duration-1000 rounded-md w-full`}
+          } outline-none p-1 transition-all duration-1000 rounded-sm w-full`}
         />
       ) : (
         <textarea
@@ -22,7 +22,7 @@ const CustomInput = ({ label, type = "input", ...props }) => {
             meta.touched && meta.error
               ? "border border-red-600"
               : "border border-fontColor"
-          } outline-none p-1 transition-all duration-1000 rounded-md w-full`}
+          } outline-none p-1 transition-all duration-1000 rounded-sm w-full`}
         />
       )}
       <p
