@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
-const index = () => {
+const ContactUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -111,7 +111,7 @@ const index = () => {
   );
 };
 
-export default index;
+export default ContactUs;
 
 export const Spinner = () => {
   return (

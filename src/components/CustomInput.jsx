@@ -11,7 +11,7 @@ const CustomInput = ({ label, type = "input", ...props }) => {
           className={`${
             meta.touched && meta.error
               ? "border border-red-600"
-              : "border border-black"
+              : "border border-fontColor"
           } outline-none p-1 transition-all duration-1000 rounded-md w-full`}
         />
       ) : (
@@ -21,7 +21,7 @@ const CustomInput = ({ label, type = "input", ...props }) => {
           className={`${
             meta.touched && meta.error
               ? "border border-red-600"
-              : "border border-black"
+              : "border border-fontColor"
           } outline-none p-1 transition-all duration-1000 rounded-md w-full`}
         />
       )}
