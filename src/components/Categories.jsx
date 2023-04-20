@@ -10,8 +10,8 @@ const Categories = ({ onCategorySelect }) => {
   const [openList, setOpenList] = useState("");
 
   const handleClick = (event) => {
-    if (+event.target.dataset.index === openList) return setOpenList("");
-    else setOpenList(+event.target.dataset.index);
+    if (+event.currentTarget.dataset.index === openList) return setOpenList("");
+    else setOpenList(+event.currentTarget.dataset.index);
   };
 
   // console.log(openList);
@@ -25,13 +25,12 @@ const Categories = ({ onCategorySelect }) => {
             onCategorySelect("face");
           }}
         >
-          <p data-index={0} className="flex items-center gap-5">
-            <span data-index={0} className="w-4/5">
+          <p className="flex items-center gap-5">
+            <span className="w-4/5">
               <FaGrinWink className="pr-1 inline-block pb-2" fontSize={25} />{" "}
               Face
             </span>{" "}
             <span
-              data-index={0}
               className={`transition-all duration-300 ${
                 openList === 0 ? "rotate-180" : ""
               }`}
@@ -40,9 +39,9 @@ const Categories = ({ onCategorySelect }) => {
             </span>
           </p>
           <ul
-            className={`[&>li]:py-1 transition-all duration-500 ${
+            className={`[&>li]:py-1  [&>li]:pl-10 transition-all duration-500 ${
               openList === 0
-                ? "text-fontColor h-24 opacity-100"
+                ? "text-fontColor mb-3 h-24 opacity-100"
                 : "h-0 opacity-0 pointer-events-none"
             }`}
           >
@@ -79,12 +78,11 @@ const Categories = ({ onCategorySelect }) => {
             onCategorySelect("eyes");
           }}
         >
-          <p data-index={1} className="flex items-center gap-5">
-            <span data-index={1} className="w-4/5">
+          <p className="flex items-center gap-5">
+            <span className="w-4/5">
               <FaEye className="pr-2 inline-block pb-2" fontSize={25} /> Eyes
             </span>{" "}
             <span
-              data-index={1}
               className={`transition-all duration-300 ${
                 openList === 1 ? "rotate-180" : ""
               }`}
@@ -93,9 +91,9 @@ const Categories = ({ onCategorySelect }) => {
             </span>
           </p>
           <ul
-            className={`[&>li]:py-1 transition-all duration-500 ${
+            className={`[&>li]:py-1  [&>li]:pl-10 transition-all duration-500 ${
               openList === 1
-                ? "text-fontColor h-24 opacity-100"
+                ? "text-fontColor mb-3 h-24 opacity-100"
                 : "h-0 opacity-0 pointer-events-none"
             }`}
           >
@@ -132,12 +130,11 @@ const Categories = ({ onCategorySelect }) => {
             onCategorySelect("lips");
           }}
         >
-          <p data-index={2} className="flex items-center gap-5">
-            <span data-index={2} className="w-4/5">
+          <p className="flex items-center gap-5">
+            <span className="w-4/5">
               <GiLips className="pr-2 inline-block pb-2" fontSize={25} /> Lips
             </span>{" "}
             <span
-              data-index={2}
               className={`transition-all duration-300 ${
                 openList === 2 ? "rotate-180" : ""
               }`}
@@ -146,9 +143,9 @@ const Categories = ({ onCategorySelect }) => {
             </span>
           </p>
           <ul
-            className={`[&>li]:py-1 transition-all duration-500 ${
+            className={`[&>li]:py-1  [&>li]:pl-10 transition-all duration-500 ${
               openList === 2
-                ? "text-fontColor h-24 opacity-100"
+                ? "text-fontColor mb-3 h-24 opacity-100"
                 : "h-0 opacity-0 pointer-events-none"
             }`}
           >

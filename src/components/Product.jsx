@@ -30,7 +30,6 @@ const Product = ({ key, ...props }) => {
       >
         <div className="overflow-hidden">
           <img
-            onLoad={(e) => console.log(e)}
             src={original}
             alt="product"
             className="w-full object-cover max-h-[305px] min-h-[304px]"
