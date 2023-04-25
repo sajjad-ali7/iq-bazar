@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: ["pickbazarlaravel.s3.ap-southeast-1.amazonaws.com"],
+  images: {
+    domains: ["pickbazarlaravel.s3.ap-southeast-1.amazonaws.com"],
+  },
 };
 
 module.exports = nextConfig;

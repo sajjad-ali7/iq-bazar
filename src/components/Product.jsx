@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import ProductModal from "@/modal/ProductModal";
+import Image from "next/image";
 import { useState } from "react";
 
 const Product = ({ key, ...props }) => {
@@ -29,10 +30,12 @@ const Product = ({ key, ...props }) => {
         className=" cursor-pointer overflow-hidden rounded-md transition-all duration-500 hover:-translate-y-2 bg-white"
       >
         <div className="overflow-hidden">
-          <img
+          <Image
+            height={500}
+            width={500}
+            className="w-full object-cover max-h-[305px] min-h-[304px]"
             src={original}
             alt="product"
-            className="w-full object-cover max-h-[305px] min-h-[304px]"
           />
         </div>
         <div className="flex flex-col gap-1 mt-2 px-3 pb-3">

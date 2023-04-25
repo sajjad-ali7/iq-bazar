@@ -7,6 +7,7 @@ import { CART_DRAWER_INDEX } from "@/consts";
 import { useEffect, useState } from "react";
 import { showCartState } from "@/recoil";
 import { useRecoilState } from "recoil";
+import Image from "next/image";
 const CartDrawer = () => {
   const [showCart, setShowCart] = useRecoilState(showCartState);
 
@@ -103,16 +104,14 @@ const CartItem = () => {
           <span className="text-xl -mb-1">{amount}</span>
           <button onClick={() => setAmount((prev) => --prev)}>-</button>
         </div>
-        <div className="flex flex-grow gap-3 items-center">
-          <div>
-            <img
-              src="/8off.webp"
-              alt="product-img"
-              className="rounded-md"
-              width={80}
-              height={80}
-            />
-          </div>
+        <div className="flex flex-grow gap-3 items-center ">
+          <Image
+            src="/8off.webp"
+            width={100}
+            height={100}
+            className="rounded-md overflow-hidden w-16 h-16"
+            alt="product-img"
+          />
           <div className="flex-grow h-[70px]  flex flex-col justify-between">
             <p className="font-bold text-lg">product name</p>
             <div className="flex justify-between items-center font-semibold text-lg">

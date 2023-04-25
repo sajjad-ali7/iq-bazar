@@ -1,5 +1,6 @@
 import Container from "@/components/Container";
 import Head from "next/head";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const index = () => {
@@ -11,7 +12,7 @@ const index = () => {
       </Head>
       <div className="h-screen">
         <Container>
-          <div className="offers-auto-cols mx-auto ">
+          <div className="offers-auto-cols py-5 mx-auto ">
             <Card imgNum={2} coupon={"5OFF2"} />
             <Card imgNum={5} coupon={"OFF6"} />
             <Card imgNum={6} coupon={"BAZAR10"} />
@@ -40,10 +41,8 @@ const Card = ({ imgNum, coupon }) => {
     }
   }, [isCopied]);
   return (
-    <div className="card  shadow-xl">
-      <figure>
-        <img src={`/${imgNum}off.webp`} alt="Shoes" />
-      </figure>
+    <div className="card  shadow-xl overflow-hidden">
+      <Image src={`/${imgNum}off.webp`} alt="Shoes" width={400} height={200} />
       <div className=" flex flex-row py-4 px-5   justify-between items-center ">
         <p>{coupon}</p>
         <h6 className="text-xl">

@@ -1,6 +1,7 @@
 import CustomInput from "@/components/CustomInput";
 import { Formik, Form } from "formik";
 import Head from "next/head";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 const ContactUs = () => {
@@ -34,9 +35,11 @@ const ContactUs = () => {
         <Alert showAlert={showAlert} />
         <div className="w-11/12 lg:w-3/4  py-16 mx-auto flex max-md:flex-col-reverse gap-8 justify-center">
           <div className="bg-white max-md:w-full p-3 rounded-md self-start">
-            <img
+            <Image
               src="/contact-us.svg"
               alt="contact-us"
+              width={400}
+              height={300}
               className="block my-6 max-md:mx-auto"
             />
             <div className="leading-8	">

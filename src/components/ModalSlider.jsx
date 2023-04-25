@@ -6,6 +6,7 @@ import { SwiperSlide } from "swiper/react";
 
 import SwiperCore, { Navigation } from "swiper/core";
 import { useState } from "react";
+import Image from "next/image";
 
 SwiperCore.use([Navigation]);
 
@@ -59,7 +60,9 @@ const ModalSlider = ({ data }) => {
           >
             {data.gallery.map(({ original: path, id }) => (
               <SwiperSlide key={id} className="w-full">
-                <img
+                <Image
+                  width={400}
+                  height={400}
                   src={path}
                   alt="product-image"
                   className="w-full object-contain h-full"
