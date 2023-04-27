@@ -144,9 +144,8 @@ const CartBody = ({ showCart, setShowCart }) => {
 
 const CartItem = ({ data, setCartItems }) => {
   const { name, price, image: { original } = "" } = data;
-  const [amount, setAmount] = useState(data.amount);
 
-  if (amount === 0) return null;
+  if (data.amount === 0) return null;
   return (
     <>
       <div
@@ -154,19 +153,17 @@ const CartItem = ({ data, setCartItems }) => {
       >
         <div className="flex flex-col px-2 bg-gray-200 p-1 rounded-2xl items-center justify-center text-2xl">
           <button
-            onClick={() => {
-              setAmount((prev) => ++prev);
-              addItems(CART_ITEMS, data, amount + 1);
-            }}
+            onClick={() =>
+              setCartItems(addItems(CART_ITEMS, data, data.amount + 1))
+            }
           >
             +
           </button>
-          <span className="text-xl -mb-1">{amount}</span>
+          <span className="text-xl -mb-1">{data.amount}</span>
           <button
-            onClick={() => {
-              setAmount((prev) => --prev);
-              removeItems(CART_ITEMS, data, amount - 1);
-            }}
+            onClick={() =>
+              setCartItems(removeItems(CART_ITEMS, data, data.amount - 1))
+            }
           >
             -
           </button>
@@ -184,12 +181,9 @@ const CartItem = ({ data, setCartItems }) => {
             <div className="flex justify-between items-center font-semibold text-lg">
               <p>{priceFormatter(price)}</p>
               <div className="flex items-center justify-center gap-4">
-                <p>{priceFormatter(price * amount)}</p>
+                <p>{priceFormatter(price * data.amount)}</p>
                 <button
-                  onClick={() => {
-                    setAmount(0);
-                    setCartItems(removeItems(CART_ITEMS, data, 0));
-                  }}
+                  onClick={() => setCartItems(removeItems(CART_ITEMS, data, 0))}
                   className="transition-all duration-300 rounded-full p-[3px] block bg-stone-200 text-fontColor hover:text-red-600 ml-auto mr-3 "
                 >
                   <AiOutlineClose />

@@ -22,13 +22,13 @@ export const addItems = (arrayName, product, amount) => {
 
   if (filteredArr.length === 0) {
     storage.set(arrayName, JSON.stringify([{ ...product, amount }]));
-    return [{ ...product, amount }];
+    return [{ ...product, amount }].sort((a, b) => a.id - b.id);
   } else {
     storage.set(
       arrayName,
       JSON.stringify([...filteredArr, { ...product, amount }])
     );
-    return [...filteredArr, { ...product, amount }];
+    return [...filteredArr, { ...product, amount }].sort((a, b) => a.id - b.id);
   }
 };
 
@@ -39,7 +39,7 @@ export const removeItems = (arrayName, product, amount) => {
 
   if (amount === 0) {
     storage.set(arrayName, JSON.stringify(newArray));
-    return newArray;
+    return newArray.sort((a, b) => a.id - b.id);
   } else {
     storage.set(
       arrayName,
