@@ -9,7 +9,6 @@ export default function Document() {
         <body className="overflow-x-hidden bg-bgColor text-fontColor">
           <Main />
           <NextScript />
-          <div id="portal"></div>
         </body>
       </RecoilRoot>
     </Html>

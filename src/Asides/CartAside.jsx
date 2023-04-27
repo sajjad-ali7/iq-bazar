@@ -3,13 +3,21 @@ import { AiOutlineClose } from "react-icons/ai";
 import emptyBag from "../../public/emptyBag.json";
 import Lottie from "lottie-react-web";
 import { FiShoppingBag } from "react-icons/fi";
-import { CART_DRAWER_INDEX } from "@/consts";
+import { CART_DRAWER_INDEX, CART_ITEMS } from "@/consts";
 import { useEffect, useState } from "react";
-import { showCartState } from "@/recoil";
+import { cartItemsState, showCartState } from "@/recoil";
 import { useRecoilState } from "recoil";
 import Image from "next/image";
+import {
+  addItems,
+  calcTotalPrice,
+  priceFormatter,
+  removeItems,
+} from "@/helpers";
+import { useRouter } from "next/router";
 const CartDrawer = () => {
   const [showCart, setShowCart] = useRecoilState(showCartState);
+  const [cartItems, setCartItems] = useRecoilState(cartItemsState);
 
   useEffect(() => {
     return () => setShowCart(false);
@@ -32,39 +40,12 @@ const CartDrawer = () => {
         style={{ zIndex: CART_DRAWER_INDEX }}
       >
         <div className="drawer-content ">
-          <CartButton showCart={showCart} setShowCart={setShowCart} />
-          <div className="pt-5 p-2">
-            <div className="flex items-center justify-between border-b pb-5 mb-1">
-              <p className="flex items-center justify-between gap-1 text-fontColor text-lg">
-                <FiShoppingBag />
-                <span>0 Item</span>
-              </p>
-              <button
-                className="block ml-auto mr-4 scale-150"
-                onClick={() => setShowCart(false)}
-              >
-                <AiOutlineClose />
-              </button>
-            </div>
-            <div className=" relative max-w-screen">
-              {/* <Lottie
-                options={{
-                  animationData: showCart && emptyBag,
-                }}
-              /> */}
-              <div className="min-h-[80vh]">
-                <CartItem />
-              </div>
-              <div className="bg-white sticky bottom-0 left-0 py-2">
-                <div className="bg-fontColor overflow-hidden p-0 text-center rounded-3xl w-full flex items-center justify-between">
-                  <p className="px-3 text-bgColor">checkout</p>
-                  <p className="py-3 px-5 rounded-3xl text-fontColor bg-bgColor">
-                    $100
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <CartButton
+            cartItems={cartItems}
+            showCart={showCart}
+            setShowCart={setShowCart}
+          />
+          <CartBody showCart={showCart} setShowCart={setShowCart} />
         </div>
       </div>
     </>
@@ -73,7 +54,12 @@ const CartDrawer = () => {
 
 export default CartDrawer;
 
-const CartButton = ({ showCart, setShowCart }) => {
+const CartButton = ({ cartItems, showCart, setShowCart }) => {
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    setTotal(calcTotalPrice(cartItems));
+  }, [cartItems]);
   return (
     <div
       className={`fixed transition-all duration-500 top-2/4 max-md:hidden ${
@@ -83,16 +69,83 @@ const CartButton = ({ showCart, setShowCart }) => {
     >
       <p className="flex items-center justify-between gap-1 text-bgColor">
         <FiShoppingBag />
-        <span>0 Item</span>
+        <span>{cartItems?.length || 0} Item</span>
       </p>
 
-      <p className="py-1 px-3 bg-white rounded-md mt-2">$100.5</p>
+      <p className="py-1 text-center px-3 bg-white rounded-md mt-2">
+        {priceFormatter(total)}
+      </p>
     </div>
   );
 };
 
-const CartItem = () => {
-  const [amount, setAmount] = useState(1);
+const CartBody = ({ showCart, setShowCart }) => {
+  const [cartItems, setCartItems] = useRecoilState(cartItemsState);
+  const [total, setTotal] = useState(0);
+  const { push } = useRouter();
+
+  useEffect(() => {
+    setTotal(calcTotalPrice(cartItems));
+  }, [cartItems]);
+
+  return (
+    showCart && (
+      <div className="pt-5 p-2">
+        <div className="flex items-center justify-between border-b pb-5 mb-1">
+          <p className="flex items-center justify-between gap-1 text-fontColor text-lg">
+            <FiShoppingBag />
+            <span>{cartItems.length} Item</span>
+          </p>
+          <button
+            className="block ml-auto mr-4 scale-150"
+            onClick={() => setShowCart(false)}
+          >
+            <AiOutlineClose />
+          </button>
+        </div>
+        <div className=" relative max-w-screen">
+          <div className="min-h-[80vh]">
+            {cartItems.length === 0 ? (
+              <>
+                <Lottie
+                  options={{
+                    animationData: showCart && emptyBag,
+                  }}
+                />
+                <h1 className="text-2xl font-bold text-center -mt-3">
+                  No products found
+                </h1>
+              </>
+            ) : (
+              <>
+                {cartItems.map((el) => (
+                  <CartItem data={el} key={el.id} setCartItems={setCartItems} />
+                ))}
+              </>
+            )}
+          </div>
+
+          <div
+            className=" sticky bottom-0 left-0 py-2 cursor-pointer"
+            onClick={() => push("checkout")}
+          >
+            <div className="bg-fontColor overflow-hidden p-2 text-center rounded-3xl w-full flex items-center justify-between">
+              <p className="px-3 text-bgColor">Checkout</p>
+              <p className="py-2 px-3  rounded-3xl text-fontColor bg-bgColor">
+                {priceFormatter(total)}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  );
+};
+
+const CartItem = ({ data, setCartItems }) => {
+  const { name, price, image: { original } = "" } = data;
+  const [amount, setAmount] = useState(data.amount);
+
   if (amount === 0) return null;
   return (
     <>
@@ -100,26 +153,43 @@ const CartItem = () => {
         className={`flex py-2 w-full mb-2 px-1 rounded-md items-center gap-4`}
       >
         <div className="flex flex-col px-2 bg-gray-200 p-1 rounded-2xl items-center justify-center text-2xl">
-          <button onClick={() => setAmount((prev) => ++prev)}>+</button>
+          <button
+            onClick={() => {
+              setAmount((prev) => ++prev);
+              addItems(CART_ITEMS, data, amount + 1);
+            }}
+          >
+            +
+          </button>
           <span className="text-xl -mb-1">{amount}</span>
-          <button onClick={() => setAmount((prev) => --prev)}>-</button>
+          <button
+            onClick={() => {
+              setAmount((prev) => --prev);
+              removeItems(CART_ITEMS, data, amount - 1);
+            }}
+          >
+            -
+          </button>
         </div>
         <div className="flex flex-grow gap-3 items-center ">
           <Image
-            src="/8off.webp"
+            src={original}
             width={100}
             height={100}
             className="rounded-md overflow-hidden w-16 h-16"
             alt="product-img"
           />
           <div className="flex-grow h-[70px]  flex flex-col justify-between">
-            <p className="font-bold text-lg">product name</p>
+            <p className="font-bold text-lg">{name}</p>
             <div className="flex justify-between items-center font-semibold text-lg">
-              <p>$22</p>
+              <p>{priceFormatter(price)}</p>
               <div className="flex items-center justify-center gap-4">
-                <p>${22 * amount}</p>
+                <p>{priceFormatter(price * amount)}</p>
                 <button
-                  onClick={() => setAmount(0)}
+                  onClick={() => {
+                    setAmount(0);
+                    setCartItems(removeItems(CART_ITEMS, data, 0));
+                  }}
                   className="transition-all duration-300 rounded-full p-[3px] block bg-stone-200 text-fontColor hover:text-red-600 ml-auto mr-3 "
                 >
                   <AiOutlineClose />

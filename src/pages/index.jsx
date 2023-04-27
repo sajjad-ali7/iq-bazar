@@ -48,7 +48,7 @@ export default function Home() {
   const onCategorySelect = (categoryName) => {
     setGetType("categories");
     setCategoryName(categoryName);
-    setGetQuery(onCategoriesSelect(categoryName));
+    setGetQuery(onCategoriesSelect(categoryName, currentPage));
   };
 
   const onLoadMoreClick = () => {

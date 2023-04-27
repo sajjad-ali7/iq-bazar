@@ -1,32 +1,27 @@
-import dynamic from "next/dynamic";
-import React from "react";
-
+import CheckoutInputs from "@/components/CheckoutInputs";
 const index = () => {
-  const DynamicCheckoutInputs = dynamic(
-    () => "../../components/CheckoutInputs"
-  );
   return (
     <div className="bg-bgColor h-screen">
       <div className="w-11/12 md:w-3/4 m-auto flex gap-5 py-10 max-md:pb-20">
         <div className="w-2/3 flex flex-col gap-5">
-          <DynamicCheckoutInputs
+          <CheckoutInputs
             name={"phoneNumber"}
             header={"Phone Number"}
             type={"tel"}
             number={1}
           />
-          <DynamicCheckoutInputs name={"name"} header={"Name"} number={2} />
-          <DynamicCheckoutInputs
+          <CheckoutInputs name={"name"} header={"Name"} number={2} />
+          <CheckoutInputs
             name={"billingAddress"}
             header={"Billing Address"}
             number={3}
           />
-          <DynamicCheckoutInputs
+          <CheckoutInputs
             name={"shippingAddress"}
             header={"Shipping Address"}
             number={4}
           />
-          <DynamicCheckoutInputs
+          <CheckoutInputs
             name={"shippingAddress"}
             header={"Shipping Address"}
             number={5}
@@ -41,7 +36,7 @@ const index = () => {
               <SelectBtn date={"Afternoon"} fromTo={"2.00 PM - 5.00 PM"} />
               <SelectBtn date={"Evening"} fromTo={"5.00 PM - 8.00 PM"} />
             </div>
-          </DynamicCheckoutInputs>
+          </CheckoutInputs>
         </div>
         <div className="w-1/3">
           <YourOrders />

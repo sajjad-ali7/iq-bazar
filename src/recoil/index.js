@@ -20,3 +20,7 @@ export const getQueryState = atom({
   key: "getQueryState",
   default: getAllProducts(1),
 });
+export const cartItemsState = atom({
+  key: "cartItemsState",
+  default: [],
+});

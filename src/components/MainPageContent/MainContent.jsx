@@ -52,7 +52,7 @@ const MainContent = ({
           </div>
         )}
 
-        {currentPage !== lastPage && (
+        {currentPage !== lastPage && lastPage !== 0 && (
           <button
             onClick={onLoadMoreClick}
             className={`btn mx-auto block border-2 bg-fontColor text-white mt-8 transition-all duration-100 hover:bg-bgColor hover:text-fontColor ${

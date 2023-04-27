@@ -1,11 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import ModalSlider from "@/components/ModalSlider";
 import { Dialog } from "@headlessui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillHeart, AiFillStar, AiOutlineHeart } from "react-icons/ai";
 import { GrClose } from "react-icons/gr";
 
-const ProductModal = ({ setShowProductModal, showProductModal, data }) => {
+const ProductModal = ({
+  increment,
+  decrement,
+  setShowProductModal,
+  showProductModal,
+  data,
+  cartItems,
+}) => {
   return (
     <Dialog
       open={showProductModal}
@@ -29,7 +36,12 @@ const ProductModal = ({ setShowProductModal, showProductModal, data }) => {
             </button>
 
             <Dialog.Description>
-              <ProductModalContent data={data} />
+              <ProductModalContent
+                decrement={decrement}
+                increment={increment}
+                data={data}
+                cartItems={cartItems}
+              />
             </Dialog.Description>
           </Dialog.Panel>
         </div>
@@ -38,19 +50,25 @@ const ProductModal = ({ setShowProductModal, showProductModal, data }) => {
   );
 };
 
-const ProductModalContent = ({ data }) => {
-  const { price, sale_price, name, description, quantity, categories } = data;
+const ProductModalContent = ({ cartItems, increment, decrement, data }) => {
+  const [isInCart, setIsInCart] = useState(
+    cartItems?.find((el) => el.id === data.id)
+  );
+  const { price, sale_price, name, description, quantity, categories } =
+    isInCart || data;
   const [showMoreDesc, setShowMoreDesc] = useState(false);
-  const [counter, setCounter] = useState(0);
+  const [amount, setAmount] = useState(isInCart?.amount || 0);
   const [isFav, setIsFav] = useState(false);
-  const increment = () =>
-    setCounter((prev) => {
-      if (quantity === prev) return prev;
-      else {
-        return ++prev;
-      }
-    });
-  const decrement = () => setCounter((prev) => --prev);
+
+  useEffect(() => {
+    setIsInCart(cartItems?.find((el) => el.id === data.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartItems]);
+
+  useEffect(() => {
+    setAmount(isInCart?.amount || 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInCart]);
 
   return (
     <>
@@ -120,18 +138,24 @@ const ProductModalContent = ({ data }) => {
 
           <div className="flex items-center flex-wrap mt-10 gap-5">
             <button className="product-btn text-bgColor h-11 bg-fontColor max-lg:w-full w-3/5">
-              {counter > 0 ? (
+              {amount > 0 ? (
                 <>
-                  <p className="btn-counter w-1/4" onClick={() => decrement()}>
+                  <p
+                    className="btn-counter text-2xl w-1/4"
+                    onClick={() => decrement(data)}
+                  >
                     -
                   </p>
-                  <p className="grow btn-text">{counter}</p>
-                  <p className="btn-counter w-1/4" onClick={() => increment()}>
+                  <p className="grow btn-text">{amount}</p>
+                  <p
+                    className="btn-counter text-2xl w-1/4"
+                    onClick={() => increment(data)}
+                  >
                     +
                   </p>
                 </>
               ) : (
-                <p className="grow btn-text" onClick={() => increment()}>
+                <p className="grow btn-text" onClick={() => increment(data)}>
                   Add To Shopping Cart
                 </p>
               )}
@@ -146,7 +170,7 @@ const ProductModalContent = ({ data }) => {
               {categories.map(({ name, id }) => (
                 <p
                   key={id}
-                  className="border cursor-pointer border-dashed font-semibold text-stone-600 border-stone-600 hover:border-fontColor hover:text-fontColor transition-all duration-300  py-1 px-2 rounded-md"
+                  className="border cursor-default border-dashed font-semibold text-stone-600 border-stone-600 hover:border-fontColor hover:text-fontColor transition-all duration-300  py-1 px-2 rounded-md"
                 >
                   {name}
                 </p>

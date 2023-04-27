@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Roboto } from "@next/font/google";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
+  cartItemsState,
   showCartState,
   showMenuDrawerState,
   showProdcutModalState,
@@ -10,6 +11,8 @@ import Navbar from "./Navbar";
 import CartDrawer from "@/Asides/CartAside";
 import MenuDrawer from "@/Asides/MenuAside";
 import Container from "./Container";
+import { storage } from "@/helpers";
+import { CART_ITEMS } from "@/consts";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -20,6 +23,13 @@ const MainWrapper = ({ children }) => {
   // const prodcutModal = useRecoilValue(showProdcutModalState);
   const cartAside = useRecoilValue(showCartState);
   const [overflowY, setOverflowY] = useState(cartAside || menuAside);
+  const [, setCartItems] = useRecoilState(cartItemsState);
+  useEffect(() => {
+    if (localStorage) {
+      setCartItems(storage.parsedGet(CART_ITEMS));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
