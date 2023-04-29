@@ -1,5 +1,17 @@
 import CheckoutInputs from "@/components/CheckoutInputs";
-const index = () => {
+import { calcTotalPrice, priceFormatter } from "@/helpers";
+import { cartItemsState, showCartState } from "@/recoil";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+const Checkout = () => {
+  const [, showCart] = useRecoilState(showCartState);
+  const [cartItems, setCartItems] = useRecoilState(cartItemsState);
+
+  useEffect(() => {
+    showCart(false);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="bg-bgColor h-screen">
       <div className="w-11/12 md:w-3/4 m-auto flex gap-5 py-10 max-md:pb-20">
@@ -39,37 +51,44 @@ const index = () => {
           </CheckoutInputs>
         </div>
         <div className="w-1/3">
-          <YourOrders />
+          <YourOrders cartItems={cartItems} />
         </div>
       </div>
     </div>
   );
 };
 
-export default index;
+export default Checkout;
 
-const SelectBtn = ({ date, fromTo }) => {
-  return (
-    <button className="border focus:scale-110 focus:bg-bgColor rounded-md hover:bg-drawerBg transition-all duration-300 flex flex-col gap-2 text-center items-center border-fontColor p-2">
-      <p>{date}</p>
-      <p>{fromTo}</p>
-    </button>
-  );
-};
-
-const YourOrders = () => {
+const YourOrders = ({ cartItems }) => {
   return (
     <div>
       <h1 className="text-center text-xl font-bold">Your Orders</h1>
       <div className="flex flex-col gap-2 py-6">
-        <p>2</p>
+        {cartItems.length > 0 ? (
+          cartItems?.map((el) => (
+            <div key={el.id} className="flex items-center justify-between">
+              <div className="flex gap-1">
+                <strong>{el.amount}</strong>
+                <span>x</span>{" "}
+                <p title={el.name}>
+                  {el.name.length > 20 ? `${el.name.slice(0, 20)}...` : el.name}
+                </p>
+              </div>
+              <p>$ {el.price}</p>
+            </div>
+          ))
+        ) : (
+          <h1 className="text-center text-2xl">No Orders Yet</h1>
+        )}
       </div>
 
       <hr />
 
       <div className="flex flex-col gap-2 py-3">
         <p className="flex justify-between items-center">
-          <span>Sub Total</span> <span>$1,085.45</span>
+          <span>Total</span>{" "}
+          <span>{priceFormatter(calcTotalPrice(cartItems))}</span>
         </p>
         <p className="flex justify-between items-center">
           <span>Tax</span> <span>Calculated at checkout</span>
@@ -83,5 +102,14 @@ const YourOrders = () => {
         Check Availability
       </button>
     </div>
+  );
+};
+
+const SelectBtn = ({ date, fromTo }) => {
+  return (
+    <button className="border focus:scale-110 focus:bg-bgColor rounded-md hover:bg-drawerBg transition-all duration-300 flex flex-col gap-2 text-center items-center border-fontColor p-2">
+      <p>{date}</p>
+      <p>{fromTo}</p>
+    </button>
   );
 };
