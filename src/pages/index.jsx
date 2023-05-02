@@ -23,8 +23,11 @@ export default function Home() {
   const fetchData = async () => {
     setLoader(true);
     const { data: res } = await getProducts(getQuery);
+
     setLastPage(res.last_page);
-    setProducts((prev) => [...prev, ...res.data]);
+    if (getType === "search") setProducts((prev) => [...res.data]);
+    else setProducts((prev) => [...prev, ...res.data]);
+
     setLoader(false);
   };
 

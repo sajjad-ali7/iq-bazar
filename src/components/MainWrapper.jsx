@@ -37,6 +37,7 @@ const MainWrapper = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     setOverflowY(cartAside || menuAside);
   }, [, menuAside, cartAside]);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 200) {
@@ -58,6 +59,7 @@ const MainWrapper = ({ children }) => {
       }
     };
   }, []);
+
   return (
     <main
       className={`${roboto.className} ${
