@@ -45,7 +45,7 @@ const Navbar = () => {
             ? `fixed mb-5 backdrop-blur-sm bg-drawerBg shadow-md bg-opacity-75 brightness-125`
             : "relative"
         }`}
-        style={{ zIndex: 11111 }}
+        style={{ zIndex: NAVIGATION_INDEX }}
       >
         <Container>
           <nav
