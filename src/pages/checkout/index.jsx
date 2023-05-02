@@ -14,8 +14,8 @@ const Checkout = () => {
   }, []);
   return (
     <div className="bg-bgColor h-screen">
-      <div className="w-11/12 md:w-3/4 m-auto flex gap-5 py-10 max-md:pb-20">
-        <div className="w-2/3 flex flex-col gap-5">
+      <div className="w-11/12 md:w-3/4 m-auto flex md:flex-row flex-col gap-5 py-10 max-md:pb-20">
+        <div className="md:w-2/3 flex flex-col gap-5">
           <CheckoutInputs
             name={"phoneNumber"}
             header={"Phone Number"}
@@ -50,7 +50,7 @@ const Checkout = () => {
             </div>
           </CheckoutInputs>
         </div>
-        <div className="w-1/3">
+        <div className="md:w-1/3">
           <YourOrders cartItems={cartItems} />
         </div>
       </div>
@@ -85,16 +85,10 @@ const YourOrders = ({ cartItems }) => {
 
       <hr />
 
-      <div className="flex flex-col gap-2 py-3">
+      <div className="flex flex-col gap-2 py-3 mb-2">
         <p className="flex justify-between items-center">
           <span>Total</span>{" "}
           <span>{priceFormatter(calcTotalPrice(cartItems))}</span>
-        </p>
-        <p className="flex justify-between items-center">
-          <span>Tax</span> <span>Calculated at checkout</span>
-        </p>
-        <p className="flex justify-between items-center">
-          <span>Estimated Shipping</span> <span>Calculated at checkout</span>
         </p>
       </div>
 

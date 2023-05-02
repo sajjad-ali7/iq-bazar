@@ -12,7 +12,7 @@ import CartDrawer from "@/Asides/CartAside";
 import MenuDrawer from "@/Asides/MenuAside";
 import Container from "./Container";
 import { storage } from "@/helpers";
-import { CART_ITEMS } from "@/consts";
+import { CART_ITEMS, NAVBAR_HEIGHT } from "@/consts";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -24,6 +24,8 @@ const MainWrapper = ({ children }) => {
   const cartAside = useRecoilValue(showCartState);
   const [overflowY, setOverflowY] = useState(cartAside || menuAside);
   const [, setCartItems] = useRecoilState(cartItemsState);
+  const [contentpadding, setContentPadding] = useState(false);
+
   useEffect(() => {
     if (localStorage) {
       setCartItems(storage.parsedGet(CART_ITEMS));
@@ -35,18 +37,39 @@ const MainWrapper = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     setOverflowY(cartAside || menuAside);
   }, [, menuAside, cartAside]);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setContentPadding(true);
+      } else {
+        setContentPadding(false);
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+      setContentPadding(false);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        setContentPadding(false);
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
   return (
     <main
       className={`${roboto.className} ${
         overflowY ? "overflow-hidden max-h-screen" : ""
       }`}
     >
-      <Container>
-        <Navbar />
-      </Container>
+      <Navbar />
       <CartDrawer />
       <MenuDrawer />
-      {children}
+      <div style={{ paddingTop: contentpadding ? `${NAVBAR_HEIGHT}px` : "" }}>
+        {children}
+      </div>
     </main>
   );
 };
