@@ -1,13 +1,16 @@
+import { productSectionRefState } from "@/recoil";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 
 const SearchBar = ({ onSearchClick }) => {
   const [inputValue, setInputVale] = useState("");
-
+  const [productsSection] = useRecoilState(productSectionRefState);
   useEffect(() => setInputVale(""), []);
 
   const onSubmit = (e) => {
     e.preventDefault();
     onSearchClick(inputValue);
+    productsSection.scrollIntoView();
   };
 
   return (

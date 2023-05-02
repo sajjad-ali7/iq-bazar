@@ -5,6 +5,9 @@ import Product from "../Product";
 import Categories from "../Categories";
 import CategoriesModal from "@/Asides/CategoriesModal";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { useRecoilState } from "recoil";
+import { productSectionRefState } from "@/recoil";
 
 const MainContent = ({
   currentPage,
@@ -14,12 +17,25 @@ const MainContent = ({
   loader,
   onCategorySelect,
 }) => {
+  const [, setSectionRef] = useRecoilState(productSectionRefState);
   const skeletonArr = Array.from({ length: 20 }, (e, i) => (
     <Skeleton key={i} />
   ));
 
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (sectionRef?.current) {
+      setSectionRef(sectionRef.current);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sectionRef]);
+
   return (
-    <div className={`flex relative gap-2 max-xl:flex-col p-4 `}>
+    <div
+      className={`flex relative gap-2 max-xl:flex-col p-4 `}
+      ref={sectionRef}
+    >
       <div className="max-xl:w-full w-1/6 p-2">
         <div className="max-xl:hidden">
           <Categories onCategorySelect={onCategorySelect} />
