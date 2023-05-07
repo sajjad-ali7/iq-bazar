@@ -1,3 +1,5 @@
+import BackBtn from "@/components/BackBtn";
+import Container from "@/components/Container";
 import Head from "next/head";
 import { useState } from "react";
 
@@ -38,12 +40,17 @@ const FAQ = () => {
         className="py-20 text-center bg-stone-100"
         style={{ minHeight: "calc(100vh - 86px)" }}
       >
-        <h1 className="text-3xl">FAQ</h1>
+        <Container className={"-mt-10"}>
+          <BackBtn />
+        </Container>
+        <div className="mt-3">
+          <h1 className="text-3xl">FAQ</h1>
 
-        <div className="w-11/12 md:w-3/4 mt-7 mx-auto">
-          {faqObj.map((e) => (
-            <Collapse {...e} />
-          ))}
+          <div className="w-11/12 md:w-3/4 mt-7 mx-auto">
+            {faqObj.map((e, i) => (
+              <Collapse key={i} {...e} />
+            ))}
+          </div>
         </div>
       </div>
     </>

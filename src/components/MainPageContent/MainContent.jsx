@@ -28,6 +28,7 @@ const MainContent = ({
     if (sectionRef) {
       setSectionRefState(sectionRef.current);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sectionRef]);
 
   return (

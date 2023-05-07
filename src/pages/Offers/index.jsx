@@ -1,3 +1,4 @@
+import BackBtn from "@/components/BackBtn";
 import Container from "@/components/Container";
 import Head from "next/head";
 import Image from "next/image";
@@ -12,6 +13,7 @@ const index = () => {
       </Head>
       <div className="h-screen">
         <Container>
+          <BackBtn />
           <div className="offers-auto-cols py-5 mx-auto ">
             <Card imgNum={2} coupon={"5OFF2"} />
             <Card imgNum={5} coupon={"OFF6"} />

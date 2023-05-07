@@ -40,7 +40,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`p-6 w-full transition-all duration-300  ${
+        className={`py-6 w-full transition-all duration-300  ${
           fixedNav
             ? `fixed mb-5 backdrop-blur-sm bg-drawerBg shadow-md bg-opacity-75 brightness-125`
             : "relative"

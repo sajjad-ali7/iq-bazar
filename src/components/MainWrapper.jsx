@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Inter, Roboto } from "@next/font/google";
+import { Inter } from "@next/font/google";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartItemsState, showCartState, showMenuDrawerState } from "@/recoil";
 import Navbar from "./Navbar";
@@ -7,6 +7,7 @@ import CartDrawer from "@/Asides/CartAside";
 import MenuDrawer from "@/Asides/MenuAside";
 import { storage } from "@/helpers";
 import { CART_ITEMS, NAVBAR_HEIGHT } from "@/consts";
+import { useRouter } from "next/router";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,6 +20,7 @@ const MainWrapper = ({ children }) => {
   const [overflowY, setOverflowY] = useState(cartAside || menuAside);
   const [, setCartItems] = useRecoilState(cartItemsState);
   const [contentpadding, setContentPadding] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (localStorage) {
@@ -57,7 +59,7 @@ const MainWrapper = ({ children }) => {
   return (
     <main className={`${inter.className} ${overflowY ? "max-h-screen" : ""}`}>
       <Navbar />
-      <CartDrawer />
+      {router.pathname === "/" && <CartDrawer />}
       <MenuDrawer />
       <div style={{ paddingTop: contentpadding ? `${NAVBAR_HEIGHT}px` : "" }}>
         {children}

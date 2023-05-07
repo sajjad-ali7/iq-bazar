@@ -77,40 +77,18 @@ const ProductModalContent = ({ cartItems, increment, decrement, data }) => {
         <div className="w-full md:w-1/2 ">
           <div className="flex items-center gap-5 max-md:mt-4">
             <h1 className="text-3xl max-lg:text-2xl w-11/12 ">{name}</h1>
-
-            <button
-              onClick={() => setIsFav((prev) => !prev)}
-              className="w-10 h-10 relative flex items-center justify-center rounded-full border-2 border-fontColor"
-            >
-              {
-                <AiFillHeart
-                  className={`transition-all absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 duration-500 text-fontColor ${
-                    isFav ? "opacity-100" : "opacity-0"
-                  }`}
-                  fontSize={25}
-                />
-              }
-              {
-                <AiOutlineHeart
-                  className={`transition-all absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 duration-500 text-fontColor ${
-                    isFav ? "opacity-0" : "opacity-100"
-                  }`}
-                  fontSize={25}
-                />
-              }
-            </button>
+            {data?.rating_count[0]?.rating && (
+              <div className=" mt-4 justify-end flex items-center">
+                <p className="flex items-center w-fit ml-auto justify-center px-2 gap-2 rounded-md bg-fontColor text-white">
+                  <span>{data.rating_count[0].rating}</span>{" "}
+                  <span>
+                    <AiFillStar fontSize={17} />
+                  </span>
+                </p>
+              </div>
+            )}
           </div>
 
-          {data?.rating_count[0]?.rating && (
-            <div className=" mt-4 justify-end flex items-center">
-              <p className="flex items-center w-fit ml-auto justify-center px-2 gap-2 rounded-md bg-fontColor text-white">
-                <span>{data.rating_count[0].rating}</span>{" "}
-                <span>
-                  <AiFillStar fontSize={17} />
-                </span>
-              </p>
-            </div>
-          )}
           <div className="my-4">
             <p className="text-secondFColor text-md ">
               {showMoreDesc || description.length <= 150

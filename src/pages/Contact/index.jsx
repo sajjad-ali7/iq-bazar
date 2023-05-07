@@ -1,3 +1,5 @@
+import BackBtn from "@/components/BackBtn";
+import Container from "@/components/Container";
 import CustomInput from "@/components/CustomInput";
 import { Formik, Form } from "formik";
 import Head from "next/head";
@@ -36,7 +38,10 @@ const ContactUs = () => {
           showAlert={showAlert}
           msg={"Thank You For Contacting Us . We Will Get Back To You Soon"}
         />
-        <div className="w-11/12 lg:w-3/4  py-16 mx-auto flex max-md:flex-col-reverse gap-8 justify-center">
+        <Container className={"mt-8"}>
+          <BackBtn />
+        </Container>
+        <div className="w-11/12 lg:w-3/4  py-9 mx-auto flex max-md:flex-col-reverse gap-8 justify-center">
           <div className="bg-white max-md:w-full p-3 rounded-md self-start">
             <Image
               src="/contact-us.svg"
@@ -99,10 +104,10 @@ const ContactUs = () => {
                     />
                     <button
                       type="submit"
-                      className="btn btn-info submit text-white mt-2"
+                      className="btn btn-info submit bg-fontColor outline-none border-none hover:bg-fontColor text-white mt-2"
                       disabled={isSubmitting}
                     >
-                      <span className="flex items-center justify-center">
+                      <span className="flex items-center  justify-center">
                         Submit {isSubmitting && <Spinner />}
                       </span>
                     </button>

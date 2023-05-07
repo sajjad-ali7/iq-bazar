@@ -15,6 +15,7 @@ import {
   removeItems,
 } from "@/helpers";
 import { useRouter } from "next/router";
+import { FaTrash } from "react-icons/fa";
 const CartDrawer = () => {
   const [showCart, setShowCart] = useRecoilState(showCartState);
   const [cartItems] = useRecoilState(cartItemsState);
@@ -193,7 +194,7 @@ const CartItem = ({ data, setCartItems }) => {
                   onClick={() => setCartItems(removeItems(CART_ITEMS, data, 0))}
                   className="transition-all duration-300 rounded-full p-[3px] block bg-stone-200 text-fontColor hover:text-red-600 ml-auto mr-3 "
                 >
-                  <AiOutlineClose />
+                  <FaTrash />
                 </button>
               </div>
             </div>
