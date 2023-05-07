@@ -150,3 +150,7 @@ li {
   padding-left: 15px;
   cursor: pointer;
 }
+
+#products {
+  scroll-margin-top: 80px;
+}

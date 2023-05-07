@@ -26,5 +26,5 @@ export const cartItemsState = atom({
 });
 export const productSectionRefState = atom({
   key: "productSectionRefState",
-  default: null,
+  default: "",
 });

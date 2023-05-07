@@ -32,7 +32,10 @@ const ContactUs = () => {
         <title>Contact</title>
       </Head>
       <div className="bg-stone-100 overflow-hidden relative ">
-        <Alert showAlert={showAlert} />
+        <Alert
+          showAlert={showAlert}
+          msg={"Thank You For Contacting Us . We Will Get Back To You Soon"}
+        />
         <div className="w-11/12 lg:w-3/4  py-16 mx-auto flex max-md:flex-col-reverse gap-8 justify-center">
           <div className="bg-white max-md:w-full p-3 rounded-md self-start">
             <Image
@@ -127,7 +130,7 @@ export const Spinner = () => {
   );
 };
 
-const Alert = ({ showAlert }) => {
+export const Alert = ({ showAlert, msg }) => {
   return (
     <div
       className={`alert top-9 transition-all duration-700 fixed alert-success text-white md:w-96 shadow-lg ${
@@ -148,9 +151,7 @@ const Alert = ({ showAlert }) => {
             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span className="px-2">
-          Thank You For Contacting Us . We Will Get Back To You Soon{" "}
-        </span>
+        <span className="px-2">{msg}</span>
       </div>
     </div>
   );

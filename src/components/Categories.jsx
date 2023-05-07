@@ -176,21 +176,39 @@ const Categories = ({ onCategorySelect }) => {
           </ul>
         </li>
         {/* <FaGem className="inline-block mx-1" />  */}
-        <li onClick={() => onCategorySelect("accessories")}>
+        <li
+          onClick={() => {
+            onCategorySelect("accessories");
+            setOpenList("");
+          }}
+        >
           {" "}
           <GiLipstick className="pr-2 inline-block pb-2" fontSize={25} />{" "}
           Accessories
         </li>
-        <li onClick={() => onCategorySelect("shaving-needs")}>
+        <li
+          onClick={() => {
+            onCategorySelect("shaving-needs");
+            setOpenList("");
+          }}
+        >
           <RiScissors2Fill className="pr-2 inline-block pb-2" fontSize={25} />{" "}
           Shaving Needs
         </li>
-        <li onClick={() => onCategorySelect("oral-care")}>
+        <li
+          onClick={() => {
+            onCategorySelect("oral-care");
+            setOpenList("");
+          }}
+        >
           <CgBowl className="pr-2 inline-block pb-2" fontSize={25} /> Oral Care
         </li>
         <li
           className="flex items-center gap-2"
-          onClick={() => onCategorySelect("facial-care")}
+          onClick={() => {
+            onCategorySelect("facial-care");
+            setOpenList("");
+          }}
         >
           <BsFillBagHeartFill
             className="pr-2 inline-block pb-2"
@@ -198,11 +216,21 @@ const Categories = ({ onCategorySelect }) => {
           />{" "}
           Facial Care
         </li>
-        <li onClick={() => onCategorySelect("deodorant")}>
+        <li
+          onClick={() => {
+            onCategorySelect("deodorant");
+            setOpenList("");
+          }}
+        >
           <FaAirFreshener className="pr-2 inline-block pb-2" fontSize={25} />{" "}
           Deodorant
         </li>
-        <li onClick={() => onCategorySelect("bath-oil")}>
+        <li
+          onClick={() => {
+            onCategorySelect("bath-oil");
+            setOpenList("");
+          }}
+        >
           <FaBath className="pr-2 inline-block pb-2" fontSize={25} /> Bath & Oil
         </li>
       </ul>

@@ -17,13 +17,19 @@ import {
 import { useRouter } from "next/router";
 const CartDrawer = () => {
   const [showCart, setShowCart] = useRecoilState(showCartState);
-  const [cartItems, setCartItems] = useRecoilState(cartItemsState);
+  const [cartItems] = useRecoilState(cartItemsState);
+  const [html, setHtml] = useState(null);
 
   useEffect(() => {
+    if (document) setHtml(document.getElementsByTagName("html")[0]);
     return () => setShowCart(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  if (showCart && html) {
+    html.classList.add("overflow-hidden");
+  } else if (html) {
+    html.classList.remove("overflow-hidden");
+  }
   return (
     <>
       <div
@@ -143,7 +149,7 @@ const CartBody = ({ showCart, setShowCart }) => {
 };
 
 const CartItem = ({ data, setCartItems }) => {
-  const { name, price, image: { original } = "" } = data;
+  const { name, price, quantity, image: { original } = "" } = data;
 
   if (data.amount === 0) return null;
   return (
@@ -151,11 +157,12 @@ const CartItem = ({ data, setCartItems }) => {
       <div
         className={`flex py-2 w-full mb-2 px-1 rounded-md items-center gap-4`}
       >
-        <div className="flex flex-col px-2 bg-gray-200 p-1 rounded-2xl items-center justify-center text-2xl">
+        <div className="flex flex-col min-w-[30px] max-w-[30px] bg-gray-200 p-1 rounded-2xl items-center justify-center text-2xl">
           <button
-            onClick={() =>
-              setCartItems(addItems(CART_ITEMS, data, data.amount + 1))
-            }
+            onClick={() => {
+              if (data.amount !== quantity)
+                setCartItems(addItems(CART_ITEMS, data, data.amount + 1));
+            }}
           >
             +
           </button>

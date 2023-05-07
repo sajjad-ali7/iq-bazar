@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Roboto } from "@next/font/google";
+import { Inter, Roboto } from "@next/font/google";
 import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  cartItemsState,
-  showCartState,
-  showMenuDrawerState,
-  showProdcutModalState,
-} from "@/recoil";
+import { cartItemsState, showCartState, showMenuDrawerState } from "@/recoil";
 import Navbar from "./Navbar";
 import CartDrawer from "@/Asides/CartAside";
 import MenuDrawer from "@/Asides/MenuAside";
-import Container from "./Container";
 import { storage } from "@/helpers";
 import { CART_ITEMS, NAVBAR_HEIGHT } from "@/consts";
 
-const roboto = Roboto({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
@@ -35,7 +29,7 @@ const MainWrapper = ({ children }) => {
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    setOverflowY(cartAside || menuAside);
+    setOverflowY(menuAside);
   }, [, menuAside, cartAside]);
 
   useEffect(() => {
@@ -61,11 +55,7 @@ const MainWrapper = ({ children }) => {
   }, []);
 
   return (
-    <main
-      className={`${roboto.className} ${
-        overflowY ? "overflow-hidden max-h-screen" : ""
-      }`}
-    >
+    <main className={`${inter.className} ${overflowY ? "max-h-screen" : ""}`}>
       <Navbar />
       <CartDrawer />
       <MenuDrawer />
