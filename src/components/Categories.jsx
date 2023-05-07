@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import { BsFillBagHeartFill } from "react-icons/bs";
 import { FaAirFreshener, FaBath, FaEye, FaGrinWink } from "react-icons/fa";
@@ -6,7 +6,7 @@ import { GiLips, GiLipstick } from "react-icons/gi";
 import { CgBowl } from "react-icons/cg";
 import { RiScissors2Fill } from "react-icons/ri";
 
-const Categories = ({ onCategorySelect }) => {
+const Categories = ({ setIsAsideMenuOpen, onCategorySelect }) => {
   const [openList, setOpenList] = useState("");
 
   const handleClick = (event) => {
@@ -17,7 +17,10 @@ const Categories = ({ onCategorySelect }) => {
   // console.log(openList);
   return (
     <div>
-      <ul className="[&>li]:py-1 font-semibold text-lg">
+      <ul
+        className="[&>li]:py-1 font-semibold text-lg"
+        onClick={() => setIsAsideMenuOpen && setIsAsideMenuOpen()}
+      >
         <li
           data-index={0}
           onClick={(e) => {

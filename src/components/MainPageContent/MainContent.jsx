@@ -3,7 +3,7 @@ import { Spinner } from "@/pages/Contact";
 import Skeleton from "../Skeleton";
 import Product from "../Product";
 import Categories from "../Categories";
-import CategoriesModal from "@/Asides/CategoriesModal";
+import CategoriesModal from "@/Asides/CategoriesAside";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useRecoilState } from "recoil";
