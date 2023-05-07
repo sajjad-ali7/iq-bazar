@@ -181,18 +181,18 @@ const CartItem = ({ data, setCartItems }) => {
             src={original}
             width={100}
             height={100}
-            className="rounded-md overflow-hidden w-16 h-16"
+            className="rounded-md overflow-hidden w-16 h-16 object-cover"
             alt="product-img"
           />
           <div className="flex-grow h-[70px]  flex flex-col justify-between">
-            <p className="font-bold text-lg">{name}</p>
+            <p className="font-bold md:text-lg text-base ">{name}</p>
             <div className="flex justify-between items-center font-semibold text-lg">
               <p>{priceFormatter(price)}</p>
               <div className="flex items-center justify-center gap-4">
                 <p>{priceFormatter(price * data.amount)}</p>
                 <button
                   onClick={() => setCartItems(removeItems(CART_ITEMS, data, 0))}
-                  className="transition-all duration-300 rounded-full p-[3px] block bg-stone-200 text-fontColor hover:text-red-600 ml-auto mr-3 "
+                  className="transition-all duration-300 rounded-full p-2 block bg-stone-200 text-fontColor hover:text-red-600 ml-auto mr-3 "
                 >
                   <FaTrash />
                 </button>
