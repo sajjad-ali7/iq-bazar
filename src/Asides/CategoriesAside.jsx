@@ -2,18 +2,18 @@ import Categories from "@/components/Categories";
 import { CART_DRAWER_INDEX } from "@/consts";
 import { useState } from "react";
 import { VscSettings } from "react-icons/vsc";
-const CategoriesModal = ({ onCategorySelect }) => {
+const CategoriesAside = ({ setIsModalOpen, onCategorySelect }) => {
   const [isAsideMenuOpen, setIsAsideMenuOpen] = useState(false);
   return (
     <>
       <button
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => setIsModalOpen && setIsModalOpen(true)}
         className="rounded-md flex items-center gap-2 text-white bg-fontColor py-2 px-7 "
       >
         <VscSettings fontSize={25} /> <span className="text-lg">Filter</span>
       </button>
       <div
-        onClick={() => setIsModalOpen(false)}
+        onClick={() => setIsModalOpen && setIsModalOpen(false)}
         className={`w-full fixed transition-all duration-500 ${
           isAsideMenuOpen ? "right-0" : "-right-full"
         } top-0 min-h-screen bg-black opacity-40`}
@@ -45,4 +45,4 @@ const CategoriesModal = ({ onCategorySelect }) => {
   );
 };
 
-export default CategoriesModal;
+export default CategoriesAside;
