@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import MainContent from "@/components/MainPageContent/MainContent";
 import Slides from "@/components/Slides";
 import { onCategoriesSelect, onSearch } from "@/helpers";
-import { getQueryState, productsArr } from "@/recoil";
+import { getQueryState, getTypeState, productsArr } from "@/recoil";
 import { getProducts } from "@/service";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ import { useRecoilState } from "recoil";
 
 export default function Home() {
   //getTypes is [null , 'search' , 'categories']
-  const [getType, setGetType] = useState();
+  const [getType, setGetType] = useRecoilState(getTypeState);
   const [getQuery, setGetQuery] = useRecoilState(getQueryState);
   const [products, setProducts] = useRecoilState(productsArr);
   const [categoryName, setCategoryName] = useState("");
@@ -42,12 +42,6 @@ export default function Home() {
     setProducts([]);
   }, [getType, categoryName]);
 
-  //on search submit change the queryType state
-  const onSearchClick = (searchVal) => {
-    setGetType("search");
-    setGetQuery(onSearch(searchVal));
-  };
-
   const onCategorySelect = (categoryName) => {
     setGetType("categories");
     setCategoryName(categoryName);
@@ -69,7 +63,7 @@ export default function Home() {
         </Head>
       </>
 
-      <Hero onSearchClick={onSearchClick} />
+      <Hero />
 
       <div className="bg-white p-5">
         <Container>

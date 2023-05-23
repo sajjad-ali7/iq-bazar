@@ -28,3 +28,7 @@ export const productSectionRefState = atom({
   key: "productSectionRefState",
   default: "",
 });
+export const getTypeState = atom({
+  key: "getTypeState",
+  default: null,
+});

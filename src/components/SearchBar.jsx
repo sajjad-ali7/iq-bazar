@@ -1,15 +1,19 @@
-import { productSectionRefState } from "@/recoil";
+import { onSearch } from "@/helpers";
+import { getQueryState, getTypeState, productSectionRefState } from "@/recoil";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 const SearchBar = ({ onSearchClick }) => {
   const [inputValue, setInputVale] = useState("");
   const [productsSection] = useRecoilState(productSectionRefState);
+  const [, setGetType] = useRecoilState(getTypeState);
+  const [, setGetQuery] = useRecoilState(getQueryState);
   useEffect(() => setInputVale(""), []);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onSearchClick(inputValue);
+    setGetType("search");
+    setGetQuery(onSearch(inputValue));
     productsSection.scrollIntoView();
   };
 

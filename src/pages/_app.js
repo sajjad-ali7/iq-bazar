@@ -6,16 +6,22 @@ import "../styles/globals.css";
 
 import { RecoilRoot } from "recoil";
 import MainWrapper from "@/components/MainWrapper";
+import Head from "next/head";
 
 const queryClient = new QueryClient();
 export default function App({ Component, pageProps }) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <MainWrapper>
-          <Component {...pageProps} />
-        </MainWrapper>
-      </RecoilRoot>
-    </QueryClientProvider>
+    <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.jpg" type="image/x-icon" />
+      </Head>
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <MainWrapper>
+            <Component {...pageProps} />
+          </MainWrapper>
+        </RecoilRoot>
+      </QueryClientProvider>
+    </>
   );
 }

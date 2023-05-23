@@ -77,7 +77,7 @@ const Navbar = () => {
                 isSearchbarOpen ? "mt-0" : "-mt-40"
               }`}
             >
-              <SearchBar onSearchClick={onSearchClick} />
+              <SearchBar />
             </div>
           </nav>
         </Container>
