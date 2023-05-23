@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { AiOutlineClose } from "react-icons/ai";
-import emptyBag from "/emptyBag.json";
+import emptyBag from "/emptybag.json";
 import Lottie from "lottie-react-web";
 import { FiShoppingBag } from "react-icons/fi";
 import { CART_ASIDE_INDEX, CART_ITEMS } from "@/consts";

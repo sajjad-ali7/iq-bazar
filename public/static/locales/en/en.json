@@ -1,7 +1,0 @@
-{
-  "USERNAME_ERROR": "Name Must be string",
-  "EMAIL_ERROR": "invalid Email ",
-  "SUBJECT": "Subject is Required",
-  "DESCRIPTION": "Description is Required",
-  "CONTACT": "Contact Us"
-}
