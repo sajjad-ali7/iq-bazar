@@ -1,36 +1,32 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Inter } from "@next/font/google";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { cartItemsState, showCartState, showMenuDrawerState } from "@/recoil";
+import { cartItemsState, showCartState, showMenuAsideState } from "@/recoil";
 import Navbar from "./Navbar";
-import CartDrawer from "@/Asides/CartAside";
-import MenuDrawer from "@/Asides/MenuAside";
+import CartAside from "@/Asides/CartAside";
+import MenuAside from "@/Asides/MenuAside";
 import { storage } from "@/helpers";
 import { CART_ITEMS, NAVBAR_HEIGHT } from "@/consts";
-import { useRouter } from "next/router";
 
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
 const MainWrapper = ({ children }) => {
-  const menuAside = useRecoilValue(showMenuDrawerState);
-  // const prodcutModal = useRecoilValue(showProdcutModalState);
+  const menuAside = useRecoilValue(showMenuAsideState);
   const cartAside = useRecoilValue(showCartState);
   const [overflowY, setOverflowY] = useState(cartAside || menuAside);
   const [, setCartItems] = useRecoilState(cartItemsState);
   const [contentpadding, setContentPadding] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     if (localStorage) {
       setCartItems(storage.parsedGet(CART_ITEMS));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     setOverflowY(menuAside);
   }, [, menuAside, cartAside]);
 
@@ -59,8 +55,8 @@ const MainWrapper = ({ children }) => {
   return (
     <main className={`${inter.className} ${overflowY ? "max-h-screen" : ""}`}>
       <Navbar />
-      {router.pathname === "/" && <CartDrawer />}
-      <MenuDrawer />
+      <CartAside />
+      <MenuAside />
       <div style={{ paddingTop: contentpadding ? `${NAVBAR_HEIGHT}px` : "" }}>
         {children}
       </div>

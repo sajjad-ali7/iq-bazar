@@ -1,12 +1,12 @@
-import { CART_DRAWER_INDEX } from "@/consts";
-import { showMenuDrawerState } from "@/recoil";
+import { CART_ASIDE_INDEX } from "@/consts";
+import { showMenuAsideState } from "@/recoil";
 import Link from "next/link";
 import { useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useRecoilState } from "recoil";
 const MenuDrawer = () => {
   const [showMenuDrawer, setShowMenuDrawer] =
-    useRecoilState(showMenuDrawerState);
+    useRecoilState(showMenuAsideState);
   useEffect(() => {
     return () => setShowMenuDrawer(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -18,13 +18,13 @@ const MenuDrawer = () => {
           showMenuDrawer ? "right-0" : "-right-full"
         }`}
         onClick={() => setShowMenuDrawer(false)}
-        style={{ zIndex: CART_DRAWER_INDEX }}
+        style={{ zIndex: CART_ASIDE_INDEX }}
       ></div>
       <div
         className={`bg-drawerBg transition-all duration-500 min-h-screen fixed top-0 ${
           showMenuDrawer ? "left-0" : "-left-full"
         }`}
-        style={{ zIndex: CART_DRAWER_INDEX }}
+        style={{ zIndex: CART_ASIDE_INDEX }}
       >
         <div className="drawer-content">
           <div className="flex justify-between items-center p-5">

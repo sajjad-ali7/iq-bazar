@@ -56,7 +56,7 @@ const Checkout = () => {
         setShowAlert(true);
       }}
     >
-      {({ setFieldValue, values, resetForm, errors }) => (
+      {({ setFieldValue, values, errors }) => (
         <Form>
           <div className="bg-bgColor h-screen relative">
             <Alert
@@ -123,16 +123,18 @@ const Checkout = () => {
               </div>
               <div className="md:w-1/3">
                 <YourOrders cartItems={cartItems} />
-                <button
-                  type="submit"
-                  className={`${
-                    Object.values(errors).length > 0
-                      ? "bg-stone-500 cursor-not-allowed"
-                      : "bg-fontColor"
-                  }  transition-all duration-300 p-1 text-center text-white rounded-lg text-2xl tracking-widest font-light w-full`}
-                >
-                  {"Order"}
-                </button>
+                {cartItems.length > 0 && (
+                  <button
+                    type="submit"
+                    className={`${
+                      Object.values(errors).length > 0
+                        ? "bg-stone-500 cursor-not-allowed"
+                        : "bg-fontColor"
+                    }  transition-all duration-300 p-1 text-center text-white rounded-lg text-2xl tracking-widest font-light w-full`}
+                  >
+                    {"Order"}
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -169,12 +171,14 @@ const YourOrders = ({ cartItems }) => {
 
       <hr />
 
-      <div className="flex flex-col gap-2 py-3 mb-2">
-        <p className="flex justify-between items-center">
-          <span>Total</span>
-          <span>{priceFormatter(calcTotalPrice(cartItems))}</span>
-        </p>
-      </div>
+      {cartItems.length > 0 && (
+        <div className="flex flex-col gap-2 py-3 mb-2">
+          <p className="flex justify-between items-center">
+            <span>Total</span>
+            <span>{priceFormatter(calcTotalPrice(cartItems))}</span>
+          </p>
+        </div>
+      )}
     </div>
   );
 };

@@ -7,12 +7,12 @@ import { FaBars } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import { BiHomeSmile } from "react-icons/bi";
 import { useSetRecoilState } from "recoil";
-import { showCartState, showMenuDrawerState } from "@/recoil";
+import { showCartState, showMenuAsideState } from "@/recoil";
 import Container from "./Container";
 const Navbar = () => {
   const [isSearchbarOpen, setIsSearchbarOpen] = useState(false);
   const setShowCart = useSetRecoilState(showCartState);
-  const setShowMenuDrawer = useSetRecoilState(showMenuDrawerState);
+  const setShowMenuDrawer = useSetRecoilState(showMenuAsideState);
   const [fixedNav, setFixedNav] = useState(false);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const Navbar = () => {
                 isSearchbarOpen ? "mt-0" : "-mt-40"
               }`}
             >
-              <SearchBar />
+              <SearchBar onSearchClick={onSearchClick} />
             </div>
           </nav>
         </Container>

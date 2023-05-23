@@ -4,8 +4,8 @@ export const showCartState = atom({
   key: "showCart",
   default: false,
 });
-export const showMenuDrawerState = atom({
-  key: "showMenuDrawer",
+export const showMenuAsideState = atom({
+  key: "showMenuAside",
   default: false,
 });
 export const showProdcutModalState = atom({

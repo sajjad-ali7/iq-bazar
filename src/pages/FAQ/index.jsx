@@ -40,7 +40,7 @@ const FAQ = () => {
         className="py-20 text-center bg-stone-100"
         style={{ minHeight: "calc(100vh - 86px)" }}
       >
-        <Container className={"-mt-10"}>
+        <Container className={"-mt-10 max-md:hidden"}>
           <BackBtn />
         </Container>
         <div className="mt-3">

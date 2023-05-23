@@ -38,7 +38,7 @@ const ContactUs = () => {
           showAlert={showAlert}
           msg={"Thank You For Contacting Us . We Will Get Back To You Soon"}
         />
-        <Container className={"mt-8"}>
+        <Container className={"mt-8 max-md:hidden"}>
           <BackBtn />
         </Container>
         <div className="w-11/12 lg:w-3/4  py-9 mx-auto flex max-md:flex-col-reverse gap-8 justify-center">

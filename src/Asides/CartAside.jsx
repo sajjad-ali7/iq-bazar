@@ -3,7 +3,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import emptyBag from "../../public/emptyBag.json";
 import Lottie from "lottie-react-web";
 import { FiShoppingBag } from "react-icons/fi";
-import { CART_DRAWER_INDEX, CART_ITEMS } from "@/consts";
+import { CART_ASIDE_INDEX, CART_ITEMS } from "@/consts";
 import { useEffect, useState } from "react";
 import { cartItemsState, showCartState } from "@/recoil";
 import { useRecoilState } from "recoil";
@@ -34,17 +34,17 @@ const CartDrawer = () => {
   return (
     <>
       <div
-        className={`w-full fixed transition-all duration-500 ${
+        className={`w-full  fixed transition-all duration-500 ${
           showCart ? "left-0" : "-left-full"
         } top-0 min-h-screen bg-black opacity-40`}
         onClick={() => setShowCart(false)}
-        style={{ zIndex: CART_DRAWER_INDEX }}
+        style={{ zIndex: CART_ASIDE_INDEX }}
       ></div>
       <div
-        className={`bg-drawerBg w-11/12 md:w-[500px] transition-all h-screen  overflow-y-scroll duration-500 min-h-screen fixed top-0 ${
+        className={`bg-drawerBg w-full md:w-[500px] transition-all h-screen  overflow-y-scroll duration-500 min-h-screen fixed top-0 ${
           showCart ? "right-0" : "-right-full"
         } `}
-        style={{ zIndex: CART_DRAWER_INDEX }}
+        style={{ zIndex: CART_ASIDE_INDEX }}
       >
         <div className="drawer-content ">
           <CartButton
@@ -63,13 +63,16 @@ export default CartDrawer;
 
 const CartButton = ({ cartItems, showCart, setShowCart }) => {
   const [total, setTotal] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     setTotal(calcTotalPrice(cartItems));
   }, [cartItems]);
   return (
     <div
-      className={`fixed transition-all duration-500 top-2/4 max-md:hidden ${
+      className={`fixed transition-all ${
+        router.pathname !== "/" ? "hidden" : ""
+      } duration-500 top-2/4 max-md:hidden ${
         !showCart ? "right-0" : "-right-full"
       } p-3 -translate-y-2/4 rounded-l-md bg-fontColor cursor-pointer `}
       onClick={() => setShowCart(true)}
@@ -101,7 +104,7 @@ const CartBody = ({ showCart, setShowCart }) => {
         <div className="flex items-center justify-between border-b pb-5 mb-1">
           <p className="flex items-center justify-between gap-1 text-fontColor text-lg">
             <FiShoppingBag />
-            <span>{cartItems.length} Item</span>
+            <span>{cartItems?.length} Item</span>
           </p>
           <button
             className="block ml-auto mr-4 scale-150"
@@ -112,7 +115,7 @@ const CartBody = ({ showCart, setShowCart }) => {
         </div>
         <div className=" relative max-w-screen">
           <div className="min-h-[80vh]">
-            {cartItems.length === 0 ? (
+            {cartItems?.length === 0 || !cartItems ? (
               <>
                 <Lottie
                   options={{
@@ -125,7 +128,7 @@ const CartBody = ({ showCart, setShowCart }) => {
               </>
             ) : (
               <>
-                {cartItems.map((el) => (
+                {cartItems?.map((el) => (
                   <CartItem data={el} key={el.id} setCartItems={setCartItems} />
                 ))}
               </>

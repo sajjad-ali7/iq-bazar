@@ -13,7 +13,7 @@ const index = () => {
       </Head>
       <div className="h-screen">
         <Container>
-          <BackBtn />
+          <BackBtn className="max-md:hidden" />
           <div className="offers-auto-cols py-5 mx-auto ">
             <Card imgNum={2} coupon={"5OFF2"} />
             <Card imgNum={5} coupon={"OFF6"} />
