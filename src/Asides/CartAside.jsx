@@ -16,6 +16,7 @@ import {
 } from "@/helpers";
 import { useRouter } from "next/router";
 import { FaTrash } from "react-icons/fa";
+
 const CartDrawer = () => {
   const [showCart, setShowCart] = useRecoilState(showCartState);
   const [cartItems] = useRecoilState(cartItemsState);
