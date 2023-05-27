@@ -33,7 +33,7 @@ const ContactUs = () => {
       <Head>
         <title>Contact</title>
       </Head>
-      <div className="bg-stone-100 overflow-hidden relative ">
+      <div className="bg-stone-100 overflow-hidden relative max-md:pb-9">
         <Alert
           showAlert={showAlert}
           msg={"Thank You For Contacting Us . We Will Get Back To You Soon"}
