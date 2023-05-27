@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { AiOutlineClose } from "react-icons/ai";
-import emptyBag from "C:/Users/hp/Documents/iq-bazar/public/Bag.json";
+import animationData from "../../public/bag-animation.json";
 import Lottie from "lottie-react-web";
 import { FiShoppingBag } from "react-icons/fi";
 import { CART_ASIDE_INDEX, CART_ITEMS } from "@/consts";
@@ -120,7 +120,7 @@ const CartBody = ({ showCart, setShowCart }) => {
               <>
                 <Lottie
                   options={{
-                    animationData: showCart && emptyBag,
+                    animationData: showCart && animationData,
                   }}
                 />
                 <h1 className="text-2xl font-bold text-center -mt-3">
